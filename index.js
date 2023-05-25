@@ -32,7 +32,6 @@ let premiumMAV;
 let premiumAV;
 let premiumAMV;
 
-
 let quote = '';
 let stepNumber = 0;
 let stepName = "PRICE_ZIP";
@@ -78,43 +77,43 @@ function handlechoosenPackage(event) {
     choosenPackage = event.target.value;
     switch (choosenPackage) {
         case "BASIC_THEFT_A":
-            choosenPackage = "BASIC_THEFT";
+            choosenPackage = 5;
             premiumSplitting = 12;
             break;
         case "BASIC_THEFT_M":
-            choosenPackage = "BASIC_THEFT";
+            choosenPackage = 5;
             premiumSplitting = 1;
             break;
         case "BASIC_DAMAGE_A":
-            choosenPackage = "BASIC_DAMAGE";
+            choosenPackage = 6;
             premiumSplitting = 12;
             break;
         case "BASIC_DAMAGE_M":
-            choosenPackage = "BASIC_DAMAGE";
+            choosenPackage = 6;
             premiumSplitting = 1;
             break;
         case "CLASSIC_A":
-            choosenPackage = "CLASSIC";
+            choosenPackage = 7;
             premiumSplitting = 12;
             break;
         case "CLASSIC_M":
-            choosenPackage = "CLASSIC";
+            choosenPackage = 7;
             premiumSplitting = 1;
             break;
         case "COMFORT_A":
-            choosenPackage = "COMFORT";
+            choosenPackage = 8;
             premiumSplitting = 12;
             break;
         case "COMFORT_M":
-            choosenPackage = "COMFORT";
+            choosenPackage = 8;
             premiumSplitting = 1;
             break;
         case "PREMIUM_A":
-            choosenPackage = "PREMIUM";
+            choosenPackage = 9;
             premiumSplitting = 12;
             break;
         case "PREMIUM_M":
-            choosenPackage = "PREMIUM";
+            choosenPackage = 9;
             premiumSplitting = 1;
             break;
         default:
