@@ -140,7 +140,7 @@ document.getElementById("bikeBrand").oninput = updateBikeBrand;
 
 function updateBikeDate() {
     if (stepNumber == 1) {
-        bikeDate = undefined;
+        bikeDate = new Date();
     } else  {
         bikeDate = this.value; 
         bikeDate = new Date(bikeDate);    
@@ -416,10 +416,6 @@ function updateQS(quoteSerial) {
                 step: stepName,
             },
             vehicle: {
-                brand: bikeBrand,
-                model: bikeModel,
-                price: bikeprice,
-                purchase_date: bikeDate,
                 type: "bicyle",
             },
         }),
