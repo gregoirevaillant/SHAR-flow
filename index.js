@@ -441,7 +441,7 @@ function updateQSAuth(quoteSerial) {
                 brand: bikeBrand,
                 model: bikeModel,
                 price: bikeprice,
-                purchaseDate: bikeDate,
+                purchase_date: bikeDate,
 				type: "bicyle",
 			},
 		}),
