@@ -32,6 +32,7 @@ let premiumMAV;
 let premiumAV;
 let premiumAMV;
 
+
 let quote = '';
 let stepNumber = 0;
 let stepName = "PRICE_ZIP";
