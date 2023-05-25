@@ -388,6 +388,7 @@ function addContact() {
 }
 
 function updateQS(quoteSerial) {
+    console.log(quoteSerial);
     fetch(`https://insurance.api.staging.sharelock.co/quotes/${quoteSerial}`, {
         method: "PUT",
         headers: {
@@ -425,8 +426,8 @@ buttonSubmit.addEventListener("click", (e) => {
     if (e.keyCode === 13) {
         return;
     }
-    console.log(quote);
-    // window.location.href = `https://portal.staging.sharelock.co/onboarding?QS=${quote}`;
+    // console.log(quote);
+    window.location.href = `https://portal.staging.sharelock.co/onboarding?QS=${quote}`;
 });
 
 buttonNext.addEventListener("click", updateNextStatus);
