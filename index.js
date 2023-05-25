@@ -46,7 +46,7 @@ let title = document.getElementById("title");
 let bikeprice = 0;
 let zipcode = "";
 let email = "";
-let chosenPackage = "";
+let choosenPackage = "";
 let packages = document.querySelectorAll('[name="package"]');
 let bikeModel = "";
 let bikeBrand = "";
@@ -73,47 +73,47 @@ function updateEmail() {
 }
 document.getElementById("email").oninput = updateEmail;
 
-function handleChosenPackage(event) {
-    chosenPackage = event.target.value;
-    switch (chosenPackage) {
+function handlechoosenPackage(event) {
+    choosenPackage = event.target.value;
+    switch (choosenPackage) {
         case "BASIC_THEFT_A":
-            chosenPackage = "BASIC_THEFT";
+            choosenPackage = "BASIC_THEFT";
             premiumSplitting = 12;
             break;
         case "BASIC_THEFT_M":
-            chosenPackage = "BASIC_THEFT";
+            choosenPackage = "BASIC_THEFT";
             premiumSplitting = 1;
             break;
         case "BASIC_DAMAGE_A":
-            chosenPackage = "BASIC_DAMAGE";
+            choosenPackage = "BASIC_DAMAGE";
             premiumSplitting = 12;
             break;
         case "BASIC_DAMAGE_M":
-            chosenPackage = "BASIC_DAMAGE";
+            choosenPackage = "BASIC_DAMAGE";
             premiumSplitting = 1;
             break;
         case "CLASSIC_A":
-            chosenPackage = "CLASSIC";
+            choosenPackage = "CLASSIC";
             premiumSplitting = 12;
             break;
         case "CLASSIC_M":
-            chosenPackage = "CLASSIC";
+            choosenPackage = "CLASSIC";
             premiumSplitting = 1;
             break;
         case "COMFORT_A":
-            chosenPackage = "COMFORT";
+            choosenPackage = "COMFORT";
             premiumSplitting = 12;
             break;
         case "COMFORT_M":
-            chosenPackage = "COMFORT";
+            choosenPackage = "COMFORT";
             premiumSplitting = 1;
             break;
         case "PREMIUM_A":
-            chosenPackage = "PREMIUM";
+            choosenPackage = "PREMIUM";
             premiumSplitting = 12;
             break;
         case "PREMIUM_M":
-            chosenPackage = "PREMIUM";
+            choosenPackage = "PREMIUM";
             premiumSplitting = 1;
             break;
         default:
@@ -123,7 +123,7 @@ function handleChosenPackage(event) {
     checkButton();
 }
 packages.forEach(function (pack) {
-    pack.addEventListener("change", handleChosenPackage);
+    pack.addEventListener("change", handlechoosenPackage);
 });
 
 function updateBikeModel() {
@@ -170,7 +170,7 @@ function checkButton() {
         }
     }
     if (stepNumber == 1) {
-        if (chosenPackage === undefined) {
+        if (choosenPackage === undefined) {
             buttonNext.classList.add("disable");
         } else {
             buttonNext.classList.remove("disable");
@@ -252,7 +252,7 @@ function updatePreviousStatus() {
 
 function getQS(bikePrice, zipCode) {
     return new Promise((resolve, reject) => {
-        fetch("https://insurance.api.staging.sharelock.co/quotes", {
+        fetch("https://insurance.api.sharelock.co/quotes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -283,7 +283,7 @@ function getQS(bikePrice, zipCode) {
 }
 
 function getPrice(quote) {
-    fetch(`https://insurance.api.staging.sharelock.co/pricing/${quote}`, {
+    fetch(`https://insurance.api.sharelock.co/pricing/${quote}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -389,14 +389,14 @@ function addContact() {
 
 function updateQS(quoteSerial) {
     console.log(quoteSerial);
-    fetch(`https://insurance.api.staging.sharelock.co/quotes/${quoteSerial}`, {
+    fetch(`https://insurance.api.sharelock.co/quotes/${quoteSerial}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
         body: JSON.stringify({
-            chosenPackage: chosenPackage,
+            choosenPackage: choosenPackage,
             client: {
                 zipcode: zipcode,
             },
@@ -427,7 +427,7 @@ buttonSubmit.addEventListener("click", (e) => {
         return;
     }
     // console.log(quote);
-    window.location.href = `https://portal.staging.sharelock.co/onboarding?QS=${quote}`;
+    window.location.href = `https://portal.sharelock.co/onboarding?QS=${quote}`;
 });
 
 buttonNext.addEventListener("click", updateNextStatus);
