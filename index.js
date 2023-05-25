@@ -139,8 +139,12 @@ function updateBikeBrand() {
 document.getElementById("bikeBrand").oninput = updateBikeBrand;
 
 function updateBikeDate() {
-    bikeDate = this.value; 
-    bikeDate = new Date(bikeDate);
+    if (stepNumber == 1) {
+        bikeDate = undefined;
+    } else  {
+        bikeDate = this.value; 
+        bikeDate = new Date(bikeDate);    
+    }
     checkButton();
 }
 document.getElementById("bikeDate").oninput = updateBikeDate;
@@ -397,7 +401,9 @@ function updateQS(quoteSerial) {
             Accept: "application/json",
         },
         body: JSON.stringify({
-            choosenPackage: choosenPackage,
+            choosenPackage: {
+               "id": choosenPackage,
+            },
             client: {
                 zipcode: zipcode,
             },
