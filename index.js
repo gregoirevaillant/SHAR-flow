@@ -416,6 +416,7 @@ function updateQS(quoteSerial) {
                 step: stepName,
             },
             vehicle: {
+                bikePrice: bikeprice,
                 type: "bicyle",
             },
         }),
