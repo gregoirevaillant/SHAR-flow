@@ -32,7 +32,7 @@ let premiumMAV;
 let premiumAV;
 let premiumAMV;
 
-let quote;
+let quote = '';
 let stepNumber = 0;
 let stepName = "PRICE_ZIP";
 
@@ -326,7 +326,6 @@ function getPrice(quote) {
                         break;
                 }
             }
-
             basicTheftM.innerHTML = basicTheftMV;
             basicTheftA.innerHTML = basicTheftAV;
             basicDamageM.innerHTML = basicDamageMV;
@@ -346,7 +345,7 @@ function getPrice(quote) {
         })
         .then(() => addContact())
         .catch((error) => {
-
+            console.log(error);
         });
 }
 
@@ -426,7 +425,8 @@ buttonSubmit.addEventListener("click", (e) => {
     if (e.keyCode === 13) {
         return;
     }
-    window.location.href = `https://portal.staging.sharelock.co/onboarding?QS=${quote}`;
+    console.log(quote);
+    // window.location.href = `https://portal.staging.sharelock.co/onboarding?QS=${quote}`;
 });
 
 buttonNext.addEventListener("click", updateNextStatus);
