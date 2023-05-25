@@ -326,22 +326,22 @@ function getPrice(quote) {
                         break;
                 }
             }
-            basicTheftM.innerHTML = basicTheftMV;
-            basicTheftA.innerHTML = basicTheftAV;
-            basicDamageM.innerHTML = basicDamageMV;
-            basicDamageA.innerHTML = basicDamageAV;
-            classicM.innerHTML = classicMV;
-            classicMA.innerHTML = classicMAV;
-            classicA.innerHTML = classicAV;
-            classicAM.innerHTML = classicAMV;
-            comfortM.innerHTML = comfortMV;
-            comfortMA.innerHTML = comfortMAV;
-            comfortA.innerHTML = comfortAV;
-            comfortAM.innerHTML = comfortAMV;
-            premiumM.innerHTML = premiumMV;
-            premiumMA.innerHTML = premiumMAV;
-            premiumA.innerHTML = premiumAV;
-            premiumAM.innerHTML = premiumAMV;
+            basicTheftM.innerHTML = showPrice(basicTheftMV);
+            basicTheftA.innerHTML = showPrice(basicTheftAV);
+            basicDamageM.innerHTML = showPrice(basicDamageMV);
+            basicDamageA.innerHTML = showPrice(basicDamageAV);
+            classicM.innerHTML = showPrice(classicMV);
+            classicMA.innerHTML = showPrice(classicMAV);
+            classicA.innerHTML = showPrice(classicAV);
+            classicAM.innerHTML = showPrice(classicAMV);
+            comfortM.innerHTML = showPrice(comfortMV);
+            comfortMA.innerHTML = showPrice(comfortMAV);
+            comfortA.innerHTML = showPrice(comfortAV);
+            comfortAM.innerHTML = showPrice(comfortAMV);
+            premiumM.innerHTML = showPrice(premiumMV);
+            premiumMA.innerHTML = showPrice(premiumMAV);
+            premiumA.innerHTML = showPrice(premiumAV);
+            premiumAM.innerHTML = showPrice(premiumAMV);
         })
         .then(() => addContact())
         .catch((error) => {
