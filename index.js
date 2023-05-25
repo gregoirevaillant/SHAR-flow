@@ -140,6 +140,7 @@ document.getElementById("bikeBrand").oninput = updateBikeBrand;
 
 function updateBikeDate() {
     bikeDate = this.value; 
+    bikeDate = new Date(bikeDate);
     checkButton();
 }
 document.getElementById("bikeDate").oninput = updateBikeDate;
@@ -426,7 +427,6 @@ buttonSubmit.addEventListener("click", (e) => {
     if (e.keyCode === 13) {
         return;
     }
-    // console.log(quote);
     window.location.href = `https://portal.sharelock.co/onboarding?QS=${quote}`;
 });
 
