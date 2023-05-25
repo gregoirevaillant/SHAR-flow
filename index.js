@@ -1,4 +1,3 @@
-
 let basicTheftM = document.getElementById("basicTheftMonthly");
 let basicTheftA = document.getElementById("basicTheftAnnual");
 let basicDamageM = document.getElementById("basicDamageMonthly");
@@ -198,7 +197,7 @@ function updateNextStatus() {
             getQS()
                 .then(() => getPrice(quote))
                 .catch((error) => {
-        
+                    console.log(error)
                 });
             title.innerHTML =
                 "Sélectionnez la protection qui vous convient <span>&#129309</span>";
@@ -210,12 +209,14 @@ function updateNextStatus() {
             title.innerHTML = "Parlez nous de votre vélo <span>&#9997</span>";
             stepName = "MY_BIKE";
             stepNumber++;
+            updateQS(quote);
             checkButton();
             break;
         case 2:
             title.innerHTML = "Votre contrat est prêt ! <span>&#127881</span>";
             stepName = "AUTH";
             stepNumber++;
+            updateQS(quote);
             checkButton();
             break;
         default:
@@ -383,7 +384,7 @@ function addContact() {
             premiumAMV,
         }),
     }).catch((error) => {
-
+        console.log(error);
     });
 }
 
@@ -405,7 +406,7 @@ function updateQS(quoteSerial) {
             status: "OPEN",
             tracking: {
                 source: "WEB",
-                step: "MY_BIKE",
+                step: stepName,
             },
             vehicle: {
                 brand: bikeBrand,
@@ -415,7 +416,9 @@ function updateQS(quoteSerial) {
                 type: "bicyle",
             },
         }),
-    });
+    }).catch((error) => {
+        console.log(error);
+    });;
 }
 
 buttonSubmit.addEventListener("click", (e) => {
