@@ -140,7 +140,7 @@ document.getElementById("bikeBrand").oninput = updateBikeBrand;
 
 function updateBikeDate() {
 	bikeDate = this.value;
-	bikeDate = new Date(bikeDate);
+	bikeDate = new Date(bikeDate).toISOString();
 	checkButton();
 }
 document.getElementById("bikeDate").oninput = updateBikeDate;
@@ -438,7 +438,6 @@ function updateQSAuth(quoteSerial) {
 				step: stepName,
 			},
 			vehicle: {
-                bycicode: "",
                 brand: bikeBrand,
                 model: bikeModel,
                 price: bikeprice,
