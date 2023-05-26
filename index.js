@@ -201,14 +201,14 @@ function checkButton() {
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
-			getQS()
+			title.innerHTML = "Sélectionnez la protection qui vous convient <span>&#129309</span>";
+			stepName = "OFFER";
+			stepNumber++;
+            getQS( bikePrice, zipcode )
 				.then(() => getPrice(quote))
 				.catch((error) => {
 					console.log(error);
 				});
-			title.innerHTML = "Sélectionnez la protection qui vous convient <span>&#129309</span>";
-			stepName = "OFFER";
-			stepNumber++;
 			checkButton();
 			break;
 		case 1:
@@ -256,7 +256,7 @@ function updatePreviousStatus() {
 }
 
 // Permet de récupérer le quote serial
-function getQS() {
+function getQS( prixVelo, codePostal ) {
 	return new Promise((resolve, reject) => {
 		fetch("https://insurance.api.sharelock.co/quotes", {
 			method: "POST",
@@ -266,10 +266,10 @@ function getQS() {
 			},
 			body: JSON.stringify({
 				vehicle: {
-					price: bikePrice,
+					price: prixVelo,
 				},
 				client: {
-					zipcode: zipcode,
+					zipcode: codePostal,
 				},
 				tracking: {
 					source: "WEBFLOW",
