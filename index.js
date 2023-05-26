@@ -1,3 +1,4 @@
+// Permet de gérer les interactions avec l'utilisateur, selection des elements de la page
 let basicTheftMonthly = document.getElementById("basicTheftMonthly");
 let basicTheftAnnual = document.getElementById("basicTheftAnnual");
 let basicDamageMonthly = document.getElementById("basicDamageMonthly");
@@ -14,55 +15,52 @@ let premiumMonthly = document.getElementById("premiumMonthly");
 let premiumMonthlyAnnual = document.getElementById("premiumMonthlyAnnual");
 let premiumAnnual = document.getElementById("premiumAnnual");
 let premiumAnnualMonthly = document.getElementById("premiumAnnualMonthly");
-
-let basicTheftMonthlyValue;
-let basicTheftAnnualValue;
-let basicDamageMonthlyValue;
-let basicDamageAnnualValue;
-let classicMonthlyValue;
-let classicMonthlyAnnualValue;
-let classicAnnualValue;
-let classicAnnualMonthlyValue;
-let comfortMonthlyValue;
-let comfortMonthlyAnnualValue;
-let comfortAnnualValue;
-let comfortAnnualMonthlyValue;
-let premiumMonthlyValue;
-let premiumMonthlyAnnualValue;
-let premiumAnnualValue;
-let premiumAnnualMonthlyValue;
-
-let quote = "";
-let stepNumber = 0;
-let stepName = "PRICE_ZIP";
-
-const buttonNext = document.getElementById("next");
-buttonNext.style.pointerEvents = "none";
-buttonNext.style.opacity = "0.5";
-const buttonPrevious = document.getElementById("previous");
-const buttonSubmit = document.getElementById("submit");
-
+let buttonNext = document.getElementById("next");
+let buttonPrevious = document.getElementById("previous");
+let buttonSubmit = document.getElementById("submit");
 let title = document.getElementById("title");
-
-let bikeprice = 0;
-let zipcode = "";
-let email = "";
-let choosenPackage = "";
 let packages = document.querySelectorAll('[name="package"]');
-let bikeModel = "";
+
+// Permet de définir les variables (ordre alphabétique)s
+let basicTheftMonthlyValue = "";
+let basicTheftAnnualValue = "";
+let basicDamageMonthlyValue = "";
+let basicDamageAnnualValue = "";
 let bikeBrand = "";
 let bikeDate = "";
 let bikeInvoice = "";
+let bikeModel = "";
+let bikePrice = 0;
+let choosenPackage = "";
+let classicMonthlyValue = "";
+let classicMonthlyAnnualValue = "";
+let classicAnnualValue = "";
+let classicAnnualMonthlyValue = "";
+let comfortMonthlyValue = "";
+let comfortMonthlyAnnualValue = "";
+let comfortAnnualValue = "";
+let comfortAnnualMonthlyValue = "";
+let email = "";
 let lockInvoice = "";
+let premiumMonthlyValue = "";
+let premiumMonthlyAnnualValue = "";
+let premiumAnnualValue = "";
+let premiumAnnualMonthlyValue = "";
 let premiumSplitting = "";
+let stepName = "PRICE_ZIP";
+let stepNumber = 0;
+let quote = "";
+let zipcode = "";
 
+// Désactiver le bouton next
+buttonNext.style.pointerEvents = "none";
+buttonNext.style.opacity = "0.5";
+
+// Faire remonter les paramètres de l'URL ou l'url de la page
 let pageURL = location.pathname;
-
 let queryString = window.location.search;
 let URLSearchParams_wb = new URLSearchParams(queryString);
-
 const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
-
 for (const utm_element of utmParameters) {
 	if (URLSearchParams_wb.has(utm_element)) {
 		let value = URLSearchParams_wb.get(utm_element);
@@ -70,38 +68,27 @@ for (const utm_element of utmParameters) {
 	}
 }
 
+// Permet de mettre a jour les valeurs des variables
+function preventSubmit(e) {
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
+}
+
 function updateBikeprice(event) {
 	bikeprice = this.value;
 	checkButton();
 }
-document.getElementById("bikeprice").oninput = updateBikeprice;
-document.getElementById("bikeprice").addEventListener("keydown", (e) => {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-});
 
 function updateZipcode() {
 	zipcode = this.value;
 	checkButton();
 }
-document.getElementById("zipcode").oninput = updateZipcode;
-document.getElementById("zipcode").addEventListener("keydown", (e) => {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-});
 
 function updateEmail() {
 	email = this.value;
 	checkButton();
 }
-document.getElementById("email").oninput = updateEmail;
-document.getElementById("email").addEventListener("keydown", (e) => {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-});
 
 function handlechoosenPackage(event) {
 	choosenPackage = event.target.value;
@@ -152,31 +139,16 @@ function handlechoosenPackage(event) {
 
 	checkButton();
 }
-packages.forEach(function (pack) {
-	pack.addEventListener("change", handlechoosenPackage);
-});
 
 function updateBikeModel() {
 	bikeModel = this.value;
 	checkButton();
 }
-document.getElementById("bikeModel").oninput = updateBikeModel;
-document.getElementById("bikeModel").addEventListener("keydown", (e) => {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-});
 
 function updateBikeBrand() {
 	bikeBrand = this.value;
 	checkButton();
 }
-document.getElementById("bikeBrand").oninput = updateBikeBrand;
-document.getElementById("bikeBrand").addEventListener("keydown", (e) => {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-});
 
 function updateBikeDate() {
 	let input = this.value;
@@ -186,24 +158,16 @@ function updateBikeDate() {
 	bikeDate = `${year}-${month}-${day}T00:00:00.000Z`;
 	checkButton();
 }
-document.getElementById("bikeDate").oninput = updateBikeDate;
-document.getElementById("bikeDate").addEventListener("keydown", (e) => {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-});
 
 function updateBikeInvoice() {
 	bikeInvoice = this.checked;
 	checkButton();
 }
-document.getElementById("bikeInvoice").addEventListener("change", updateBikeInvoice);
 
 function updateLockInvoice() {
 	lockInvoice = this.checked;
 	checkButton();
 }
-document.getElementById("lockInvoice").addEventListener("change", updateLockInvoice);
 
 function checkButton() {
 	if (stepNumber == 0) {
@@ -298,6 +262,7 @@ function updatePreviousStatus() {
 	}
 }
 
+// Permet de récupérer le quote serial
 function getQS(bikePrice, zipCode) {
 	return new Promise((resolve, reject) => {
 		fetch("https://insurance.api.sharelock.co/quotes", {
@@ -333,6 +298,7 @@ function getQS(bikePrice, zipCode) {
 	});
 }
 
+// Permet de récupérer les prix
 function getPrice(quote) {
 	fetch(`https://insurance.api.sharelock.co/pricing/${quote}`, {
 		method: "GET",
@@ -410,10 +376,12 @@ function getPrice(quote) {
 		});
 }
 
+// Permet d'afficher le bon format pour les prix
 function showPrice(price) {
 	return price.toString().concat("€");
 }
 
+// Permet d'ajouter le contact dans Sendinblue et d'envoyer un mail avec MAKE
 function addContact() {
 	fetch("https://hook.eu1.make.com/lxvqgj1rseg3b704is4o0jpnwqdk2up5", {
 		method: "POST",
@@ -448,6 +416,7 @@ function addContact() {
 	});
 }
 
+// Permet de mettre à jour le quote serial lors du choix de l'offre vers l'ajout du vélo
 function updateQSMyBike(quoteSerial) {
 	console.log(quoteSerial);
 	fetch(`https://insurance.api.sharelock.co/quotes/${quoteSerial}`, {
@@ -482,6 +451,7 @@ function updateQSMyBike(quoteSerial) {
 	});
 }
 
+// Permet de mettre à jour le quote serial lors du choix de l'offre vers la page de connexion
 function updateQSAuth(quoteSerial) {
 	console.log(quoteSerial);
 	fetch(`https://insurance.api.sharelock.co/quotes/${quoteSerial}`, {
@@ -519,6 +489,44 @@ function updateQSAuth(quoteSerial) {
 	});
 }
 
+// Permet de gerer les clicks sur les boutons next et previous
+buttonNext.addEventListener("click", updateNextStatus);
+buttonPrevious.addEventListener("click", updatePreviousStatus);
+
+// Permet de gerer les inputs
+document.getElementById("bikeprice").oninput = updateBikeprice;
+document.getElementById("bikeprice").addEventListener("keydown", (e) => {
+	preventSubmit(e);
+});
+document.getElementById("zipcode").oninput = updateZipcode;
+document.getElementById("zipcode").addEventListener("keydown", (e) => {
+	preventSubmit(e);
+});
+document.getElementById("email").oninput = updateEmail;
+document.getElementById("email").addEventListener("keydown", (e) => {
+	preventSubmit(e);
+});
+document.getElementById("bikeModel").oninput = updateBikeModel;
+document.getElementById("bikeModel").addEventListener("keydown", (e) => {
+	preventSubmit(e);
+});
+document.getElementById("bikeBrand").oninput = updateBikeBrand;
+document.getElementById("bikeBrand").addEventListener("keydown", (e) => {
+	preventSubmit(e);
+});
+document.getElementById("bikeDate").oninput = updateBikeDate;
+document.getElementById("bikeDate").addEventListener("keydown", (e) => {
+	preventSubmit(e);
+});
+document.getElementById("bikeInvoice").addEventListener("change", updateBikeInvoice);
+document.getElementById("lockInvoice").addEventListener("change", updateLockInvoice);
+
+// Permet de gerer le choix de l'offre
+packages.forEach(function (pack) {
+	pack.addEventListener("change", handlechoosenPackage);
+});
+
+// Permet de gerer le click sur le bouton submit pour rediriger vers la page de connexion
 buttonSubmit.addEventListener("click", (e) => {
 	e.preventDefault();
 	if (e.keyCode === 13) {
@@ -526,6 +534,3 @@ buttonSubmit.addEventListener("click", (e) => {
 	}
 	window.location.href = `https://portal.sharelock.co/onboarding?QS=${quote}`;
 });
-
-buttonNext.addEventListener("click", updateNextStatus);
-buttonPrevious.addEventListener("click", updatePreviousStatus);
