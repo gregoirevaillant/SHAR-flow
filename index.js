@@ -37,7 +37,8 @@ let stepNumber = 0;
 let stepName = "PRICE_ZIP";
 
 const buttonNext = document.getElementById("next");
-buttonNext.classList.add("disable");
+buttonNext.style.pointerEvents = "none";
+buttonNext.style.opacity = "0.5"
 const buttonPrevious = document.getElementById("previous");
 const buttonSubmit = document.getElementById("submit");
 
@@ -139,12 +140,12 @@ function updateBikeBrand() {
 document.getElementById("bikeBrand").oninput = updateBikeBrand;
 
 function updateBikeDate() {
-    let input = this.value
-    let day = input.substring(0,2)
-    let month = input.substring(3,5)
-    let year =  input.substring(6,10)
-    bikeDate = new Date(`${year}-${month}-${day}T00:00:00.000Z`)
-    checkButton();
+	let input = this.value;
+	let day = input.substring(0, 2);
+	let month = input.substring(3, 5);
+	let year = input.substring(6, 10);
+	bikeDate = `${year}-${month}-${day}T00:00:00.000Z`;
+	checkButton();
 }
 document.getElementById("bikeDate").oninput = updateBikeDate;
 
@@ -163,16 +164,20 @@ document.getElementById("lockInvoice").addEventListener("change", updateLockInvo
 function checkButton() {
 	if (stepNumber == 0) {
 		if (bikeprice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
-			buttonNext.classList.remove("disable");
+            buttonNext.style.pointerEvents = "auto";
+            buttonNext.style.opacity = "1"
 		} else {
-			buttonNext.classList.add("disable");
+            buttonNext.style.pointerEvents = "none";
+            buttonNext.style.opacity = "0.5"
 		}
 	}
 	if (stepNumber == 1) {
 		if (choosenPackage === undefined) {
-			buttonNext.classList.add("disable");
+            buttonNext.style.pointerEvents = "none";
+            buttonNext.style.opacity = "0.5"
 		} else {
-			buttonNext.classList.remove("disable");
+            buttonNext.style.pointerEvents = "auto";
+            buttonNext.style.opacity = "1"
 		}
 	}
 	if (stepNumber == 2) {
@@ -183,10 +188,11 @@ function checkButton() {
 			bikeInvoice &&
 			lockInvoice
 		) {
-			buttonNext.classList.remove("disable");
+            buttonNext.style.pointerEvents = "auto";
+            buttonNext.style.opacity = "1"
 		} else {
-			buttonNext.classList.add("disable");
-		}
+            buttonNext.style.pointerEvents = "none";
+            buttonNext.style.opacity = "0.5"		}
 	}
 }
 
@@ -441,10 +447,10 @@ function updateQSAuth(quoteSerial) {
 				step: stepName,
 			},
 			vehicle: {
-                brand: bikeBrand,
-                model: bikeModel,
-                price: bikeprice,
-                purchase_date: bikeDate,
+				brand: bikeBrand,
+				model: bikeModel,
+				price: bikeprice,
+				purchase_date: bikeDate,
 				type: "bicyle",
 			},
 		}),
