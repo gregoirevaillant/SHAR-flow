@@ -256,7 +256,7 @@ function updatePreviousStatus() {
 }
 
 // Permet de récupérer le quote serial
-function getQS(bikePrice, zipCode) {
+function getQS() {
 	return new Promise((resolve, reject) => {
 		fetch("https://insurance.api.sharelock.co/quotes", {
 			method: "POST",
