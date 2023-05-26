@@ -147,12 +147,22 @@ function updateBikeModel() {
 	checkButton();
 }
 document.getElementById("bikeModel").oninput = updateBikeModel;
+document.getElementById("bikeModel").addEventListener("keydown", (e) => {
+	if (e.keyCode === 13) {
+        e.preventDefault();
+	}
+});
 
 function updateBikeBrand() {
 	bikeBrand = this.value;
 	checkButton();
 }
 document.getElementById("bikeBrand").oninput = updateBikeBrand;
+document.getElementById("bikeBrand").addEventListener("keydown", (e) => {
+	if (e.keyCode === 13) {
+        e.preventDefault();
+	}
+});
 
 function updateBikeDate() {
 	let input = this.value;
@@ -163,6 +173,11 @@ function updateBikeDate() {
 	checkButton();
 }
 document.getElementById("bikeDate").oninput = updateBikeDate;
+document.getElementById("bikeDate").addEventListener("keydown", (e) => {
+	if (e.keyCode === 13) {
+        e.preventDefault();
+	}
+});
 
 function updateBikeInvoice() {
 	bikeInvoice = this.checked;
