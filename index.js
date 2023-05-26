@@ -20,7 +20,7 @@ let basicTheftAnnualValue;
 let basicDamageMonthlyValue;
 let basicDamageAnnualValue;
 let classicMonthlyValue;
-let classicMAnnualValue;
+let classicMonthlyAnnualValue;
 let classicAnnualValue;
 let classicAnnualMonthlyValue;
 let comfortMonthlyValue;
@@ -139,8 +139,11 @@ function updateBikeBrand() {
 document.getElementById("bikeBrand").oninput = updateBikeBrand;
 
 function updateBikeDate() {
-	bikeDate = this.value;
-	bikeDate = new Date(bikeDate).toISOString();
+    let input = this.value
+    let day = input.substring(0,2)
+    let month = input.substring(3,5)
+    let year =  input.substring(6,10)
+    bikeDate = new Date(`${year}-${month}-${day}T00:00:00.000Z`)
 	checkButton();
 }
 document.getElementById("bikeDate").oninput = updateBikeDate;
@@ -296,51 +299,51 @@ function getPrice(quote) {
                 let a = packageObj.annual;
                 switch (packageObj.package.code) {
                     case "BASIC_THEFT":
-                        basicTheftMV = m.priceWithTaxes.toFixed(2);
-                        basicTheftAV = a.priceWithTaxes.toFixed(2);
+                        basicTheftMonthlyValue = m.priceWithTaxes.toFixed(2);
+                        basicTheftAnnualValue = a.priceWithTaxes.toFixed(2);
                         break;
                     case "BASIC_DAMAGE":
-                        basicDamageMV = m.priceWithTaxes.toFixed(2);
-                        basicDamageAV = a.priceWithTaxes.toFixed(2);
+                        basicDamageMonthlyValue = m.priceWithTaxes.toFixed(2);
+                        basicDamageAnnualValue = a.priceWithTaxes.toFixed(2);
                         break;
                     case "CLASSIC":
-                        classicMV = m.priceWithTaxes.toFixed(2);
-                        classicMAV = (m.priceWithTaxes * 12).toFixed(2);
-                        classicAV = a.priceWithTaxes.toFixed(2);
-                        classicAMV = (a.priceWithTaxes / 12).toFixed(2);
+                        classicMonthlyValue = m.priceWithTaxes.toFixed(2);
+                        classicMonthlyAnnualValue = (m.priceWithTaxes * 12).toFixed(2);
+                        classicAnnualValue = a.priceWithTaxes.toFixed(2);
+                        classicAnnualMonthlyValue = (a.priceWithTaxes / 12).toFixed(2);
                         break;
                     case "COMFORT":
-                        comfortMV = m.priceWithTaxes.toFixed(2);
-                        comfortMAV = (m.priceWithTaxes * 12).toFixed(2);
-                        comfortAV = a.priceWithTaxes.toFixed(2);
-                        comfortAMV = (a.priceWithTaxes / 12).toFixed(2);
+                        comfortMonthlyValue = m.priceWithTaxes.toFixed(2);
+                        comfortMonthlyAnnualValue = (m.priceWithTaxes * 12).toFixed(2);
+                        comfortAnnualValue = a.priceWithTaxes.toFixed(2);
+                        comfortAnnualMonthlyValue = (a.priceWithTaxes / 12).toFixed(2);
                         break;
                     case "PREMIUM":
-                        premiumMV = m.priceWithTaxes.toFixed(2);
-                        premiumMAV = (m.priceWithTaxes * 12).toFixed(2);
-                        premiumAV = a.priceWithTaxes.toFixed(2);
-                        premiumAMV = (a.priceWithTaxes / 12).toFixed(2);
+                        premiumMonthlyValue = m.priceWithTaxes.toFixed(2);
+                        premiumMonthlyAnnualValue = (m.priceWithTaxes * 12).toFixed(2);
+                        premiumAnnualValue = a.priceWithTaxes.toFixed(2);
+                        premiumAnnualMonthlyValue = (a.priceWithTaxes / 12).toFixed(2);
                         break;
                     default:
                         break;
                 }
             }
-            basicTheftM.innerHTML = showPrice(basicTheftMV);
-            basicTheftA.innerHTML = showPrice(basicTheftAV);
-            basicDamageM.innerHTML = showPrice(basicDamageMV);
-            basicDamageA.innerHTML = showPrice(basicDamageAV);
-            classicM.innerHTML = showPrice(classicMV);
-            classicMA.innerHTML = showPrice(classicMAV);
-            classicA.innerHTML = showPrice(classicAV);
-            classicAM.innerHTML = showPrice(classicAMV);
-            comfortM.innerHTML = showPrice(comfortMV);
-            comfortMA.innerHTML = showPrice(comfortMAV);
-            comfortA.innerHTML = showPrice(comfortAV);
-            comfortAM.innerHTML = showPrice(comfortAMV);
-            premiumM.innerHTML = showPrice(premiumMV);
-            premiumMA.innerHTML = showPrice(premiumMAV);
-            premiumA.innerHTML = showPrice(premiumAV);
-            premiumAM.innerHTML = showPrice(premiumAMV);
+            basicTheftMonthly.innerHTML = showPrice(basicTheftMonthlyValue);
+            basicTheftAnnual.innerHTML = showPrice(basicTheftAnnualValue);
+            basicDamageMonthly.innerHTML = showPrice(basicDamageMonthlyValue);
+            basicDamageAnnual.innerHTML = showPrice(basicDamageAnnualValue);
+            classicMonthly.innerHTML = showPrice(classicMonthlyValue);
+            classicMonthlyAnnual.innerHTML = showPrice(classicMonthlyAnnualValue);
+            classicAnnual.innerHTML = showPrice(classicAnnualValue);
+            classicAMonthly.innerHTML = showPrice(classicAnnualMonthlyValue);
+            comfortMonthly.innerHTML = showPrice(comfortMonthlyValue);
+            comfortMonthlyAnnual.innerHTML = showPrice(comfortMonthlyAnnualValue);
+            comfortAnnual.innerHTML = showPrice(comfortAnnualValue);
+            comfortAnnualMonthly.innerHTML = showPrice(comfortAnnualMonthlyValue);
+            premiumMonthly.innerHTML = showPrice(premiumMonthlyValue);
+            premiumMonthlyAnnual.innerHTML = showPrice(premiumMonthlyAnnualValue);
+            premiumAnnual.innerHTML = showPrice(premiumAnnualValue);
+            premiumAnnualMonthly.innerHTML = showPrice(premiumAnnualMonthlyValue);
         })
         .then(() => addContact())
         .catch((error) => {
@@ -364,22 +367,22 @@ function addContact() {
             zipcode,
             bikeprice,
             quote,
-            basicTheftMV,
-            basicTheftAV,
-            basicDamageMV,
-            basicDamageAV,
-            classicMV,
-            classicMAV,
-            classicAV,
-            classicAMV,
-            comfortMV,
-            comfortMAV,
-            comfortAV,
-            comfortAMV,
-            premiumMV,
-            premiumMAV,
-            premiumAV,
-            premiumAMV,
+            basicTheftMonthlyValue,
+            basicTheftAnnualValue,
+            basicDamageMonthlyValue,
+            basicDamageAnnualValue,
+            classicMonthlyValue,
+            classicMonthlyAnnualValue,
+            classicAnnualValue,
+            classicAnnualMonthlyValue,
+            comfortMonthlyValue,
+            comfortMonthlyAnnualValue,
+            comfortAnnualValue,
+            comfortAnnualMonthlyValue,
+            premiumMonthlyValue,
+            premiumMonthlyAnnualValue,
+            premiumAnnualValue,
+            premiumAnnualMonthlyValue,
         }),
     }).catch((error) => {
         console.log(error);
