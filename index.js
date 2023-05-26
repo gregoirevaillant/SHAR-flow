@@ -76,7 +76,7 @@ function preventSubmit(e) {
 }
 
 function updateBikeprice(event) {
-	bikeprice = this.value;
+	bikePrice = this.value;
 	checkButton();
 }
 
@@ -171,7 +171,7 @@ function updateLockInvoice() {
 
 function checkButton() {
 	if (stepNumber == 0) {
-		if (bikeprice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
+		if (bikePrice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
 			buttonNext.style.pointerEvents = "auto";
 			buttonNext.style.opacity = "1";
 		} else {
@@ -273,7 +273,7 @@ function getQS(bikePrice, zipCode) {
 			},
 			body: JSON.stringify({
 				vehicle: {
-					price: bikeprice,
+					price: bikePrice,
 				},
 				client: {
 					zipcode: zipcode,
@@ -392,7 +392,7 @@ function addContact() {
 		body: JSON.stringify({
 			email,
 			zipcode,
-			bikeprice,
+			bikePrice,
 			quote,
 			basicTheftMonthlyValue,
 			basicTheftAnnualValue,
@@ -442,7 +442,7 @@ function updateQSMyBike(quoteSerial) {
 				step: stepName,
 			},
 			vehicle: {
-				price: bikeprice,
+				price: bikePrice,
 				type: "bicyle",
 			},
 		}),
@@ -479,7 +479,7 @@ function updateQSAuth(quoteSerial) {
 			vehicle: {
 				brand: bikeBrand,
 				model: bikeModel,
-				price: bikeprice,
+				price: bikePrice,
 				purchase_date: bikeDate,
 				type: "bicyle",
 			},
