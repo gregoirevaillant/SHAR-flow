@@ -38,7 +38,7 @@ let stepName = "PRICE_ZIP";
 
 const buttonNext = document.getElementById("next");
 buttonNext.style.pointerEvents = "none";
-buttonNext.style.opacity = "0.5"
+buttonNext.style.opacity = "0.5";
 const buttonPrevious = document.getElementById("previous");
 const buttonSubmit = document.getElementById("submit");
 
@@ -57,11 +57,15 @@ let lockInvoice = "";
 let premiumSplitting = "";
 
 function updateBikeprice(event) {
-    console.log(event)
-    event.preventDefault();
 	bikeprice = this.value;
 	checkButton();
 }
+document.getElementById("bikeprice").addEventListener("keydown", (e) => {
+    e.preventDefault();
+	if (e.keyCode === 13) {
+		return;
+	}
+});
 document.getElementById("bikeprice").oninput = updateBikeprice;
 
 function updateZipcode() {
@@ -166,20 +170,20 @@ document.getElementById("lockInvoice").addEventListener("change", updateLockInvo
 function checkButton() {
 	if (stepNumber == 0) {
 		if (bikeprice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
-            buttonNext.style.pointerEvents = "auto";
-            buttonNext.style.opacity = "1"
+			buttonNext.style.pointerEvents = "auto";
+			buttonNext.style.opacity = "1";
 		} else {
-            buttonNext.style.pointerEvents = "none";
-            buttonNext.style.opacity = "0.5"
+			buttonNext.style.pointerEvents = "none";
+			buttonNext.style.opacity = "0.5";
 		}
 	}
 	if (stepNumber == 1) {
 		if (choosenPackage === undefined) {
-            buttonNext.style.pointerEvents = "none";
-            buttonNext.style.opacity = "0.5"
+			buttonNext.style.pointerEvents = "none";
+			buttonNext.style.opacity = "0.5";
 		} else {
-            buttonNext.style.pointerEvents = "auto";
-            buttonNext.style.opacity = "1"
+			buttonNext.style.pointerEvents = "auto";
+			buttonNext.style.opacity = "1";
 		}
 	}
 	if (stepNumber == 2) {
@@ -190,11 +194,12 @@ function checkButton() {
 			bikeInvoice &&
 			lockInvoice
 		) {
-            buttonNext.style.pointerEvents = "auto";
-            buttonNext.style.opacity = "1"
+			buttonNext.style.pointerEvents = "auto";
+			buttonNext.style.opacity = "1";
 		} else {
-            buttonNext.style.pointerEvents = "none";
-            buttonNext.style.opacity = "0.5"		}
+			buttonNext.style.pointerEvents = "none";
+			buttonNext.style.opacity = "0.5";
+		}
 	}
 }
 
@@ -309,21 +314,33 @@ function getPrice(quote) {
 						break;
 					case "CLASSIC":
 						classicMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-						classicMonthlyAnnualValue = (packageObj.monthly.priceWithTaxes * 12).toFixed(2);
+						classicMonthlyAnnualValue = (
+							packageObj.monthly.priceWithTaxes * 12
+						).toFixed(2);
 						classicAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
-						classicAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(2);
+						classicAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
+							2
+						);
 						break;
 					case "COMFORT":
 						comfortMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-						comfortMonthlyAnnualValue = (packageObj.monthly.priceWithTaxes * 12).toFixed(2);
+						comfortMonthlyAnnualValue = (
+							packageObj.monthly.priceWithTaxes * 12
+						).toFixed(2);
 						comfortAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
-						comfortAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(2);
+						comfortAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
+							2
+						);
 						break;
 					case "PREMIUM":
 						premiumMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-						premiumMonthlyAnnualValue = (packageObj.monthly.priceWithTaxes * 12).toFixed(2);
+						premiumMonthlyAnnualValue = (
+							packageObj.monthly.priceWithTaxes * 12
+						).toFixed(2);
 						premiumAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
-						premiumAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(2);
+						premiumAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
+							2
+						);
 						break;
 					default:
 						break;
