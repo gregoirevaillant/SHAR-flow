@@ -61,9 +61,8 @@ function updateBikeprice(event) {
 	checkButton();
 }
 document.getElementById("bikeprice").addEventListener("keydown", (e) => {
-    e.preventDefault();
 	if (e.keyCode === 13) {
-		return;
+        e.preventDefault();
 	}
 });
 document.getElementById("bikeprice").oninput = updateBikeprice;
