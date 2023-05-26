@@ -442,7 +442,7 @@ function updateQSMyBike(quoteSerial) {
 		body: JSON.stringify({
 			choosenPackage: {
 				id: choosenPackage,
-                accessory_step: "100",
+                accessory_step: "0",
 			},
 			client: {
 				zipcode: zipcode,
@@ -476,7 +476,7 @@ function updateQSAuth(quoteSerial) {
 		body: JSON.stringify({
 			choosenPackage: {
 				id: choosenPackage,
-                accessory_step: "100",
+                accessory_step: "0",
 			},
 			client: {
 				zipcode: zipcode,
