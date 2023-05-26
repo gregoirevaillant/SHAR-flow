@@ -56,7 +56,9 @@ let bikeInvoice = "";
 let lockInvoice = "";
 let premiumSplitting = "";
 
-function updateBikeprice() {
+function updateBikeprice(event) {
+    console.log(event)
+    event.preventDefault();
 	bikeprice = this.value;
 	checkButton();
 }
