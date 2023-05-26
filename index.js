@@ -56,6 +56,20 @@ let bikeInvoice = "";
 let lockInvoice = "";
 let premiumSplitting = "";
 
+let pageURL = location.pathname;
+
+let queryString = window.location.search;
+let URLSearchParams_wb = new URLSearchParams(queryString);
+
+const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
+
+for (const utm_element of utmParameters) {
+	if (URLSearchParams_wb.has(utm_element)) {
+		let value = URLSearchParams_wb.get(utm_element);
+		document.getElementById("." + utm_element).val(value);
+	}
+}
+
 function updateBikeprice(event) {
 	bikeprice = this.value;
 	checkButton();
@@ -63,7 +77,7 @@ function updateBikeprice(event) {
 document.getElementById("bikeprice").oninput = updateBikeprice;
 document.getElementById("bikeprice").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
-        e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -74,7 +88,7 @@ function updateZipcode() {
 document.getElementById("zipcode").oninput = updateZipcode;
 document.getElementById("zipcode").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
-        e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -85,7 +99,7 @@ function updateEmail() {
 document.getElementById("email").oninput = updateEmail;
 document.getElementById("email").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
-        e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -149,7 +163,7 @@ function updateBikeModel() {
 document.getElementById("bikeModel").oninput = updateBikeModel;
 document.getElementById("bikeModel").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
-        e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -160,7 +174,7 @@ function updateBikeBrand() {
 document.getElementById("bikeBrand").oninput = updateBikeBrand;
 document.getElementById("bikeBrand").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
-        e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -175,7 +189,7 @@ function updateBikeDate() {
 document.getElementById("bikeDate").oninput = updateBikeDate;
 document.getElementById("bikeDate").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
-        e.preventDefault();
+		e.preventDefault();
 	}
 });
 
@@ -300,7 +314,10 @@ function getQS(bikePrice, zipCode) {
 					zipcode: zipcode,
 				},
 				tracking: {
-					source: "WEB",
+					source: "WEBFLOW",
+					utm_source: utmParameters[0],
+					utm_medium: utmParameters[1],
+					utm_campaign: utmParameters[2],
 					step: "OFFER",
 				},
 			}),
@@ -442,7 +459,7 @@ function updateQSMyBike(quoteSerial) {
 		body: JSON.stringify({
 			choosenPackage: {
 				id: choosenPackage,
-                accessory_step: "0",
+				accessory_step: 0,
 			},
 			client: {
 				zipcode: zipcode,
@@ -476,7 +493,7 @@ function updateQSAuth(quoteSerial) {
 		body: JSON.stringify({
 			choosenPackage: {
 				id: choosenPackage,
-                accessory_step: "0",
+				accessory_step: 0,
 			},
 			client: {
 				zipcode: zipcode,
