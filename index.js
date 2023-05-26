@@ -68,13 +68,6 @@ for (const utm_element of utmParameters) {
 	}
 }
 
-// Permet de mettre a jour les valeurs des variables
-function preventSubmit(e) {
-	if (e.keyCode === 13) {
-		e.preventDefault();
-	}
-}
-
 function updateBikeprice(event) {
 	bikePrice = this.value;
 	checkButton();
@@ -280,9 +273,6 @@ function getQS(bikePrice, zipCode) {
 				},
 				tracking: {
 					source: "WEBFLOW",
-					utm_source: utmParameters[0],
-					utm_medium: utmParameters[1],
-					utm_campaign: utmParameters[2],
 					step: "OFFER",
 				},
 			}),
@@ -418,7 +408,6 @@ function addContact() {
 
 // Permet de mettre à jour le quote serial lors du choix de l'offre vers l'ajout du vélo
 function updateQSMyBike(quoteSerial) {
-	console.log(quoteSerial);
 	fetch(`https://insurance.api.sharelock.co/quotes/${quoteSerial}`, {
 		method: "PUT",
 		headers: {
@@ -453,7 +442,6 @@ function updateQSMyBike(quoteSerial) {
 
 // Permet de mettre à jour le quote serial lors du choix de l'offre vers la page de connexion
 function updateQSAuth(quoteSerial) {
-	console.log(quoteSerial);
 	fetch(`https://insurance.api.sharelock.co/quotes/${quoteSerial}`, {
 		method: "PUT",
 		headers: {
@@ -496,27 +484,39 @@ buttonPrevious.addEventListener("click", updatePreviousStatus);
 // Permet de gerer les inputs
 document.getElementById("bikeprice").oninput = updateBikeprice;
 document.getElementById("bikeprice").addEventListener("keydown", (e) => {
-	preventSubmit(e);
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
 });
 document.getElementById("zipcode").oninput = updateZipcode;
 document.getElementById("zipcode").addEventListener("keydown", (e) => {
-	preventSubmit(e);
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
 });
 document.getElementById("email").oninput = updateEmail;
 document.getElementById("email").addEventListener("keydown", (e) => {
-	preventSubmit(e);
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
 });
 document.getElementById("bikeModel").oninput = updateBikeModel;
 document.getElementById("bikeModel").addEventListener("keydown", (e) => {
-	preventSubmit(e);
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
 });
 document.getElementById("bikeBrand").oninput = updateBikeBrand;
 document.getElementById("bikeBrand").addEventListener("keydown", (e) => {
-	preventSubmit(e);
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
 });
 document.getElementById("bikeDate").oninput = updateBikeDate;
 document.getElementById("bikeDate").addEventListener("keydown", (e) => {
-	preventSubmit(e);
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
 });
 document.getElementById("bikeInvoice").addEventListener("change", updateBikeInvoice);
 document.getElementById("lockInvoice").addEventListener("change", updateLockInvoice);
