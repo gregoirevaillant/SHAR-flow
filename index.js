@@ -60,37 +60,34 @@ function updateBikeprice(event) {
 	bikeprice = this.value;
 	checkButton();
 }
+document.getElementById("bikeprice").oninput = updateBikeprice;
 document.getElementById("bikeprice").addEventListener("keydown", (e) => {
-    updateBikeprice();
 	if (e.keyCode === 13) {
         e.preventDefault();
 	}
 });
-document.getElementById("bikeprice").oninput = updateBikeprice;
 
 function updateZipcode() {
 	zipcode = this.value;
 	checkButton();
 }
+document.getElementById("zipcode").oninput = updateZipcode;
 document.getElementById("zipcode").addEventListener("keydown", (e) => {
-    updateZipcode();
 	if (e.keyCode === 13) {
         e.preventDefault();
 	}
 });
-document.getElementById("zipcode").oninput = updateZipcode;
 
 function updateEmail() {
 	email = this.value;
 	checkButton();
 }
+document.getElementById("email").oninput = updateEmail;
 document.getElementById("email").addEventListener("keydown", (e) => {
-    updateEmail();
 	if (e.keyCode === 13) {
         e.preventDefault();
 	}
 });
-document.getElementById("email").oninput = updateEmail;
 
 function handlechoosenPackage(event) {
 	choosenPackage = event.target.value;
