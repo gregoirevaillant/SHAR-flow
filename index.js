@@ -1,36 +1,36 @@
-let basicTheftM = document.getElementById("basicTheftMonthly");
-let basicTheftA = document.getElementById("basicTheftAnnual");
-let basicDamageM = document.getElementById("basicDamageMonthly");
-let basicDamageA = document.getElementById("basicDamageAnnual");
-let classicM = document.getElementById("classicMonthly");
-let classicMA = document.getElementById("classicMonthlyAnnual");
-let classicA = document.getElementById("classicAnnual");
-let classicAM = document.getElementById("classicAnnualMonthly");
-let comfortM = document.getElementById("comfortMonthly");
-let comfortMA = document.getElementById("comfortMonthlyAnnual");
-let comfortA = document.getElementById("comfortAnnual");
-let comfortAM = document.getElementById("comfortAnnualMonthly");
-let premiumM = document.getElementById("premiumMonthly");
-let premiumMA = document.getElementById("premiumMonthlyAnnual");
-let premiumA = document.getElementById("premiumAnnual");
-let premiumAM = document.getElementById("premiumAnnualMonthly");
+let basicTheftMonthly = document.getElementById("basicTheftMonthly");
+let basicTheftAnnual = document.getElementById("basicTheftAnnual");
+let basicDamageMonthly = document.getElementById("basicDamageMonthly");
+let basicDamageAnnual = document.getElementById("basicDamageAnnual");
+let classicMonthly = document.getElementById("classicMonthly");
+let classicMonthlyAnnual = document.getElementById("classicMonthlyAnnual");
+let classicAnnual = document.getElementById("classicAnnual");
+let classicAnnualMonthly = document.getElementById("classicAnnualMonthly");
+let comfortMonthly = document.getElementById("comfortMonthly");
+let comfortMonthlyAnnual = document.getElementById("comfortMonthlyAnnual");
+let comfortAnnual = document.getElementById("comfortAnnual");
+let comfortAnnualMonthly = document.getElementById("comfortAnnualMonthly");
+let premiumMonthly = document.getElementById("premiumMonthly");
+let premiumMonthlyAnnual = document.getElementById("premiumMonthlyAnnual");
+let premiumAnnual = document.getElementById("premiumAnnual");
+let premiumAnnualMonthly = document.getElementById("premiumAnnualMonthly");
 
-let basicTheftMV;
-let basicTheftAV;
-let basicDamageMV;
-let basicDamageAV;
-let classicMV;
-let classicMAV;
-let classicAV;
-let classicAMV;
-let comfortMV;
-let comfortMAV;
-let comfortAV;
-let comfortAMV;
-let premiumMV;
-let premiumMAV;
-let premiumAV;
-let premiumAMV;
+let basicTheftMonthlyValue;
+let basicTheftAnnualValue;
+let basicDamageMonthlyValue;
+let basicDamageAnnualValue;
+let classicMonthlyValue;
+let classicMonthlyAnnualValue;
+let classicAnnualValue;
+let classicAnnualMonthlyValue;
+let comfortMonthlyValue;
+let comfortMonthlyAnnualValue;
+let comfortAnnualValue;
+let comfortAnnualMonthlyValue;
+let premiumMonthlyValue;
+let premiumMonthlyAnnualValue;
+let premiumAnnualValue;
+let premiumAnnualMonthlyValue;
 
 let quote = "";
 let stepNumber = 0;
@@ -296,55 +296,53 @@ function getPrice(quote) {
 		.then((response) => response.json())
 		.then((response) => {
 			for (const packageObj of response) {
-				let m = packageObj.monthly;
-				let a = packageObj.annual;
 				switch (packageObj.package.code) {
 					case "BASIC_THEFT":
-						basicTheftMV = m.priceWithTaxes.toFixed(2);
-						basicTheftAV = a.priceWithTaxes.toFixed(2);
+						basicTheftMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						basicTheftAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "BASIC_DAMAGE":
-						basicDamageMV = m.priceWithTaxes.toFixed(2);
-						basicDamageAV = a.priceWithTaxes.toFixed(2);
+						basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						basicDamageAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "CLASSIC":
-						classicMV = m.priceWithTaxes.toFixed(2);
-						classicMAV = (m.priceWithTaxes * 12).toFixed(2);
-						classicAV = a.priceWithTaxes.toFixed(2);
-						classicAMV = (a.priceWithTaxes / 12).toFixed(2);
+						classicMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						classicMonthlyAnnualValue = (packageObj.monthly.priceWithTaxes * 12).toFixed(2);
+						classicAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
+						classicAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(2);
 						break;
 					case "COMFORT":
-						comfortMV = m.priceWithTaxes.toFixed(2);
-						comfortMAV = (m.priceWithTaxes * 12).toFixed(2);
-						comfortAV = a.priceWithTaxes.toFixed(2);
-						comfortAMV = (a.priceWithTaxes / 12).toFixed(2);
+						comfortMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						comfortMonthlyAnnualValue = (packageObj.monthly.priceWithTaxes * 12).toFixed(2);
+						comfortAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
+						comfortAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(2);
 						break;
 					case "PREMIUM":
-						premiumMV = m.priceWithTaxes.toFixed(2);
-						premiumMAV = (m.priceWithTaxes * 12).toFixed(2);
-						premiumAV = a.priceWithTaxes.toFixed(2);
-						premiumAMV = (a.priceWithTaxes / 12).toFixed(2);
+						premiumMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						premiumMonthlyAnnualValue = (packageObj.monthly.priceWithTaxes * 12).toFixed(2);
+						premiumAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
+						premiumAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(2);
 						break;
 					default:
 						break;
 				}
 			}
-			basicTheftM.innerHTML = showPrice(basicTheftMV);
-			basicTheftA.innerHTML = showPrice(basicTheftAV);
-			basicDamageM.innerHTML = showPrice(basicDamageMV);
-			basicDamageA.innerHTML = showPrice(basicDamageAV);
-			classicM.innerHTML = showPrice(classicMV);
-			classicMA.innerHTML = showPrice(classicMAV);
-			classicA.innerHTML = showPrice(classicAV);
-			classicAM.innerHTML = showPrice(classicAMV);
-			comfortM.innerHTML = showPrice(comfortMV);
-			comfortMA.innerHTML = showPrice(comfortMAV);
-			comfortA.innerHTML = showPrice(comfortAV);
-			comfortAM.innerHTML = showPrice(comfortAMV);
-			premiumM.innerHTML = showPrice(premiumMV);
-			premiumMA.innerHTML = showPrice(premiumMAV);
-			premiumA.innerHTML = showPrice(premiumAV);
-			premiumAM.innerHTML = showPrice(premiumAMV);
+			basicTheftMonthly.innerHTML = showPrice(basicTheftMonthlyValue);
+			basicTheftAnnual.innerHTML = showPrice(basicTheftAnnualValue);
+			basicDamageMonthly.innerHTML = showPrice(basicDamageMonthlyValue);
+			basicDamageAnnual.innerHTML = showPrice(basicDamageAnnualValue);
+			classicMonthly.innerHTML = showPrice(classicMonthlyValue);
+			classicMonthlyAnnual.innerHTML = showPrice(classicMonthlyAnnualValue);
+			classicAnnual.innerHTML = showPrice(classicAnnualValue);
+			classicAnnualMonthly.innerHTML = showPrice(classicAnnualMonthlyValue);
+			comfortMonthly.innerHTML = showPrice(comfortMonthlyValue);
+			comfortMonthlyAnnual.innerHTML = showPrice(comfortMonthlyAnnualValue);
+			comfortAnnual.innerHTML = showPrice(comfortAnnualValue);
+			comfortAnnualMonthly.innerHTML = showPrice(comfortAnnualMonthlyValue);
+			premiumMonthly.innerHTML = showPrice(premiumMonthlyValue);
+			premiumMonthlyAnnual.innerHTML = showPrice(premiumMonthlyAnnualValue);
+			premiumAnnual.innerHTML = showPrice(premiumAnnualValue);
+			premiumAnnualMonthly.innerHTML = showPrice(premiumAnnualMonthlyValue);
 		})
 		.then(() => addContact())
 		.catch((error) => {
@@ -368,22 +366,22 @@ function addContact() {
 			zipcode,
 			bikeprice,
 			quote,
-			basicTheftMV,
-			basicTheftAV,
-			basicDamageMV,
-			basicDamageAV,
-			classicMV,
-			classicMAV,
-			classicAV,
-			classicAMV,
-			comfortMV,
-			comfortMAV,
-			comfortAV,
-			comfortAMV,
-			premiumMV,
-			premiumMAV,
-			premiumAV,
-			premiumAMV,
+			basicTheftMonthlyValue,
+			basicTheftAnnualValue,
+			basicDamageMonthlyValue,
+			basicDamageAnnualValue,
+			classicMonthlyValue,
+			classicMonthlyAnnualValue,
+			classicAnnualValue,
+			classicAnnualMonthlyValue,
+			comfortMonthlyValue,
+			comfortMonthlyAnnualValue,
+			comfortAnnualValue,
+			comfortAnnualMonthlyValue,
+			premiumMonthlyValue,
+			premiumMonthlyAnnualValue,
+			premiumAnnualValue,
+			premiumAnnualMonthlyValue,
 		}),
 	}).catch((error) => {
 		console.log(error);
