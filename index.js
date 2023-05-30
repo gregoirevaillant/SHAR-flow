@@ -314,9 +314,6 @@ function getQS(prixVelo, codePostal) {
 				},
 				tracking: {
 					source: "WEBFLOW",
-					utm_source: utm_source,
-					utm_medium: utm_medium,
-					utm_campaign: utm_campaign,
 					step: "OFFER",
 				},
 			}),
