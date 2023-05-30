@@ -208,7 +208,7 @@ function checkButton() {
 }
 
 function scrollTop() {
-	let e = document.getElementById("flow-mask");
+	let e = document.getElementById("title");
 	e.scrollIntoView({
 		block: "start",
 		behavior: "smooth",
