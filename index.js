@@ -168,15 +168,6 @@ function updateLockInvoice() {
 	checkButton();
 }
 
-let windowWidth = window.matchMedia("(max-width: 991px)");
-if (windowWidth.matches) {
-	buttonNext.style.marginTop = "-400px";
-	buttonPrevious.style.marginTop = "-400px";
-} else {
-	buttonNext.style.marginTop = "-50px";
-	buttonPrevious.style.marginTop = "-50px";
-}
-
 function checkButton() {
 	if (stepNumber == 0) {
 		if (bikePrice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
@@ -229,8 +220,6 @@ function updateNextStatus() {
 				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
-			buttonNext.style.marginTop = "0px";
-			buttonPrevious.style.marginTop = "0px";
 			getQS(bikePrice, zipcode)
 				.then(() => getPrice(quote))
 				.catch((error) => {
@@ -243,13 +232,6 @@ function updateNextStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber++;
-			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-100px";
-				buttonPrevious.style.marginTop = "-100px";
-			} else {
-				buttonNext.style.marginTop = "-50px";
-				buttonPrevious.style.marginTop = "-50px";
-			}
 			scrollTop();
 			updateQSMyBike(quote);
 			checkButton();
@@ -258,13 +240,6 @@ function updateNextStatus() {
 			title.innerHTML = "Votre contrat est prêt&nbsp;!&nbsp;<span>&#127881</span>";
 			stepName = "AUTH";
 			stepNumber++;
-			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-350px";
-				buttonPrevious.style.marginTop = "-350px";
-			} else {
-				buttonNext.style.marginTop = "-50px";
-				buttonPrevious.style.marginTop = "-50px";
-			}
 			scrollTop();
 			updateQSAuth(quote);
 			checkButton();
@@ -280,13 +255,6 @@ function updatePreviousStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
-			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-100px";
-				buttonPrevious.style.marginTop = "-100px";
-			} else {
-				buttonNext.style.marginTop = "-50px";
-				buttonPrevious.style.marginTop = "-50px";
-			}
 			scrollTop();
 			checkButton();
 			break;
@@ -295,8 +263,6 @@ function updatePreviousStatus() {
 				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
-			buttonNext.style.marginTop = "-50px";
-			buttonPrevious.style.marginTop = "-50px";
 			scrollTop();
 			checkButton();
 			break;
@@ -304,13 +270,6 @@ function updatePreviousStatus() {
 			title.innerHTML = "Simulez le prix de votre assurance vélo&nbsp;<span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
-			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-350px";
-				buttonPrevious.style.marginTop = "-350px";
-			} else {
-				buttonNext.style.marginTop = "-50px";
-				buttonPrevious.style.marginTop = "-50px";
-			}
 			scrollTop();
 			checkButton();
 			break;
