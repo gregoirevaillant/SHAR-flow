@@ -164,6 +164,7 @@ function updateLockInvoice() {
 
 function checkButton() {
 	if (stepNumber == 0) {
+		buttonNext.style.marginTop = "-350px";
 		if (bikePrice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
 			buttonNext.style.pointerEvents = "auto";
 			buttonNext.style.opacity = "1";
@@ -173,6 +174,7 @@ function checkButton() {
 		}
 	}
 	if (stepNumber == 1) {
+			buttonNext.style.marginTop = "-50px";
 		if (choosenPackage === undefined) {
 			buttonNext.style.pointerEvents = "none";
 			buttonNext.style.opacity = "0.5";
@@ -182,9 +184,10 @@ function checkButton() {
 		}
 	}
 	if (stepNumber == 2) {
+			buttonNext.style.marginTop = "-350px";
 		if (
 			bikeModel.length >= 1 &&
-			bikeBrand.length >= 1 &&
+			bikeBrand.length >= 1 &&	
 			bikeDate.length >= 1 &&
 			bikeInvoice &&
 			lockInvoice
