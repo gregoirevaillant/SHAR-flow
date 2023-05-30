@@ -57,16 +57,16 @@ buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
 // Faire remonter les paramètres de l'URL ou l'url de la page
-let pageURL = location.pathname;
-let queryString = window.location.search;
-let URLSearchParams_wb = new URLSearchParams(queryString);
-const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
-for (const utm_element of utmParameters) {
-	if (URLSearchParams_wb.has(utm_element)) {
-		let value = URLSearchParams_wb.get(utm_element);
-		document.getElementById("." + utm_element).val(value);
-	}
-}
+// let pageURL = location.pathname;
+// let queryString = window.location.search;
+// let URLSearchParams_wb = new URLSearchParams(queryString);
+// const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
+// for (const utm_element of utmParameters) {
+// 	if (URLSearchParams_wb.has(utm_element)) {
+// 		let value = URLSearchParams_wb.get(utm_element);
+// 		document.getElementById("." + utm_element).val(value);
+// 	}
+// }
 
 function updateBikeprice(event) {
 	bikePrice = this.value;
@@ -164,9 +164,11 @@ function updateLockInvoice() {
 
 let windowWidth = window.matchMedia("(max-width: 700px)");
 if (windowWidth.matches) {
-	buttonNext.style.marginTop = "-350px";
+	buttonNext.style.marginTop = "-320px";
+	buttonPrevious.style.marginTop = "-320px";
 } else {
 	buttonNext.style.marginTop = "-50px";
+	buttonPrevious.style.marginTop = "-50px";
 }
 
 function checkButton() {
@@ -212,6 +214,7 @@ function updateNextStatus() {
 			stepName = "OFFER";
 			stepNumber++;
 			buttonNext.style.marginTop = "-50px";
+			buttonPrevious.style.marginTop = "-50px";
 			getQS(bikePrice, zipcode)
 				.then(() => getPrice(quote))
 				.catch((error) => {
@@ -224,9 +227,11 @@ function updateNextStatus() {
 			stepName = "MY_BIKE";
 			stepNumber++;
 			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-350px";
+				buttonNext.style.marginTop = "-400px";
+				buttonPrevious.style.marginTop = "-400px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
+				buttonPrevious.style.marginTop = "-50px";
 			}
 			updateQSMyBike(quote);
 			checkButton();
@@ -237,8 +242,10 @@ function updateNextStatus() {
 			stepNumber++;
 			if (windowWidth.matches) {
 				buttonNext.style.marginTop = "-350px";
+				buttonPrevious.style.marginTop = "-350px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
+				buttonPrevious.style.marginTop = "-50px";
 			}
 			updateQSAuth(quote);
 			checkButton();
@@ -255,9 +262,11 @@ function updatePreviousStatus() {
 			stepName = "MY_BIKE";
 			stepNumber--;
 			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-350px";
+				buttonNext.style.marginTop = "-400px";
+				buttonPrevious.style.marginTop = "-400px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
+				buttonPrevious.style.marginTop = "-50px";
 			}
 			checkButton();
 			break;
@@ -266,6 +275,7 @@ function updatePreviousStatus() {
 			stepName = "OFFER";
 			stepNumber--;
 			buttonNext.style.marginTop = "-50px";
+			buttonPrevious.style.marginTop = "-50px";
 			checkButton();
 			break;
 		case 1:
@@ -273,9 +283,11 @@ function updatePreviousStatus() {
 			stepName = "PRICE_ZIP";
 			stepNumber--;
 			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-350px";
+				buttonNext.style.marginTop = "-320px";
+				buttonPrevious.style.marginTop = "-320px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
+				buttonPrevious.style.marginTop = "-50px";
 			}
 			checkButton();
 			break;
