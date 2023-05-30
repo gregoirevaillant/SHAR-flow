@@ -162,9 +162,15 @@ function updateLockInvoice() {
 	checkButton();
 }
 
+let windowWidth = window.matchMedia("(max-width: 700px)");
+if (windowWidth.matches) {
+	buttonNext.style.marginTop = "-350px";
+} else {
+	buttonNext.style.marginTop = "-50px";
+}
+
 function checkButton() {
 	if (stepNumber == 0) {
-		buttonNext.style.marginTop = "-350px";
 		if (bikePrice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
 			buttonNext.style.pointerEvents = "auto";
 			buttonNext.style.opacity = "1";
@@ -174,7 +180,6 @@ function checkButton() {
 		}
 	}
 	if (stepNumber == 1) {
-			buttonNext.style.marginTop = "-50px";
 		if (choosenPackage === undefined) {
 			buttonNext.style.pointerEvents = "none";
 			buttonNext.style.opacity = "0.5";
@@ -184,10 +189,9 @@ function checkButton() {
 		}
 	}
 	if (stepNumber == 2) {
-			buttonNext.style.marginTop = "-350px";
 		if (
 			bikeModel.length >= 1 &&
-			bikeBrand.length >= 1 &&	
+			bikeBrand.length >= 1 &&
 			bikeDate.length >= 1 &&
 			bikeInvoice &&
 			lockInvoice
@@ -207,7 +211,8 @@ function updateNextStatus() {
 			title.innerHTML = "Sélectionnez la protection qui vous convient <span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
-            getQS( bikePrice, zipcode )
+			buttonNext.style.marginTop = "-50px";
+			getQS(bikePrice, zipcode)
 				.then(() => getPrice(quote))
 				.catch((error) => {
 					console.log(error);
@@ -218,6 +223,11 @@ function updateNextStatus() {
 			title.innerHTML = "Parlez nous de votre vélo <span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber++;
+			if (windowWidth.matches) {
+				buttonNext.style.marginTop = "-350px";
+			} else {
+				buttonNext.style.marginTop = "-50px";
+			}
 			updateQSMyBike(quote);
 			checkButton();
 			break;
@@ -225,6 +235,11 @@ function updateNextStatus() {
 			title.innerHTML = "Votre contrat est prêt ! <span>&#127881</span>";
 			stepName = "AUTH";
 			stepNumber++;
+			if (windowWidth.matches) {
+				buttonNext.style.marginTop = "-350px";
+			} else {
+				buttonNext.style.marginTop = "-50px";
+			}
 			updateQSAuth(quote);
 			checkButton();
 			break;
@@ -239,18 +254,29 @@ function updatePreviousStatus() {
 			title.innerHTML = "Parlez nous de votre vélo <span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
+			if (windowWidth.matches) {
+				buttonNext.style.marginTop = "-350px";
+			} else {
+				buttonNext.style.marginTop = "-50px";
+			}
 			checkButton();
 			break;
 		case 2:
 			title.innerHTML = "Sélectionnez la protection qui vous convient <span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
+			buttonNext.style.marginTop = "-50px";
 			checkButton();
 			break;
 		case 1:
 			title.innerHTML = "Simulez le prix de votre assurance vélo  <span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
+			if (windowWidth.matches) {
+				buttonNext.style.marginTop = "-350px";
+			} else {
+				buttonNext.style.marginTop = "-50px";
+			}
 			checkButton();
 			break;
 		default:
@@ -259,7 +285,7 @@ function updatePreviousStatus() {
 }
 
 // Permet de récupérer le quote serial
-function getQS( prixVelo, codePostal ) {
+function getQS(prixVelo, codePostal) {
 	return new Promise((resolve, reject) => {
 		fetch("https://insurance.api.sharelock.co/quotes", {
 			method: "POST",
@@ -276,6 +302,9 @@ function getQS( prixVelo, codePostal ) {
 				},
 				tracking: {
 					source: "WEBFLOW",
+					utm_source: utm_source,
+					utm_medium: utm_medium,
+					utm_campaign: utm_campaign,
 					step: "OFFER",
 				},
 			}),
