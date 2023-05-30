@@ -85,6 +85,12 @@ function updateEmail() {
 
 function handlechoosenPackage(event) {
 	choosenPackage = event.target.value;
+	let e = document.getElementById("next");
+	e.scrollIntoView({
+		block: "start",
+		behavior: "smooth",
+		inline: "start",
+	});
 	switch (choosenPackage) {
 		case "BASIC_THEFT_A":
 			choosenPackage = 5;
@@ -219,7 +225,7 @@ function scrollTop() {
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
-			title.innerHTML = "Sélectionnez la protection qui vous convient <span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
 			buttonNext.style.marginTop = "-50px";
@@ -233,7 +239,7 @@ function updateNextStatus() {
 			checkButton();
 			break;
 		case 1:
-			title.innerHTML = "Parlez nous de votre vélo <span>&#9997</span>";
+			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber++;
 			if (windowWidth.matches) {
@@ -248,7 +254,7 @@ function updateNextStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML = "Votre contrat est prêt ! <span>&#127881</span>";
+			title.innerHTML = "Votre contrat est prêt&nbsp;!&nbsp;<span>&#127881</span>";
 			stepName = "AUTH";
 			stepNumber++;
 			if (windowWidth.matches) {
@@ -270,7 +276,7 @@ function updateNextStatus() {
 function updatePreviousStatus() {
 	switch (stepNumber) {
 		case 3:
-			title.innerHTML = "Parlez nous de votre vélo <span>&#9997</span>";
+			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
 			if (windowWidth.matches) {
@@ -284,7 +290,7 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML = "Sélectionnez la protection qui vous convient <span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
 			buttonNext.style.marginTop = "-50px";
@@ -293,7 +299,7 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 1:
-			title.innerHTML = "Simulez le prix de votre assurance vélo  <span>&#128640</span>";
+			title.innerHTML = "Simulez le prix de votre assurance vélo&nbsp;<span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
 			if (windowWidth.matches) {
