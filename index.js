@@ -207,6 +207,15 @@ function checkButton() {
 	}
 }
 
+function scrollTop() {
+	let e = document.getElementById("flow-mask");
+	e.scrollIntoView({
+		block: "start",
+		behavior: "smooth",
+		inline: "start",
+	});
+}
+
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
@@ -220,6 +229,7 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
+			scrollTop();
 			checkButton();
 			break;
 		case 1:
@@ -233,6 +243,7 @@ function updateNextStatus() {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
 			}
+			scrollTop();
 			updateQSMyBike(quote);
 			checkButton();
 			break;
@@ -247,6 +258,7 @@ function updateNextStatus() {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
 			}
+			scrollTop();
 			updateQSAuth(quote);
 			checkButton();
 			break;
@@ -268,6 +280,7 @@ function updatePreviousStatus() {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
 			}
+			scrollTop();
 			checkButton();
 			break;
 		case 2:
@@ -276,6 +289,7 @@ function updatePreviousStatus() {
 			stepNumber--;
 			buttonNext.style.marginTop = "-50px";
 			buttonPrevious.style.marginTop = "-50px";
+			scrollTop();
 			checkButton();
 			break;
 		case 1:
@@ -289,6 +303,7 @@ function updatePreviousStatus() {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
 			}
+			scrollTop();
 			checkButton();
 			break;
 		default:
