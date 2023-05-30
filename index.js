@@ -168,10 +168,10 @@ function updateLockInvoice() {
 	checkButton();
 }
 
-let windowWidth = window.matchMedia("(max-width: 700px)");
+let windowWidth = window.matchMedia("(max-width: 991px)");
 if (windowWidth.matches) {
-	buttonNext.style.marginTop = "-320px";
-	buttonPrevious.style.marginTop = "-320px";
+	buttonNext.style.marginTop = "-400px";
+	buttonPrevious.style.marginTop = "-400px";
 } else {
 	buttonNext.style.marginTop = "-50px";
 	buttonPrevious.style.marginTop = "-50px";
@@ -225,11 +225,12 @@ function scrollTop() {
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
-			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML =
+				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
-			buttonNext.style.marginTop = "-50px";
-			buttonPrevious.style.marginTop = "-50px";
+			buttonNext.style.marginTop = "0px";
+			buttonPrevious.style.marginTop = "0px";
 			getQS(bikePrice, zipcode)
 				.then(() => getPrice(quote))
 				.catch((error) => {
@@ -243,8 +244,8 @@ function updateNextStatus() {
 			stepName = "MY_BIKE";
 			stepNumber++;
 			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-400px";
-				buttonPrevious.style.marginTop = "-400px";
+				buttonNext.style.marginTop = "-100px";
+				buttonPrevious.style.marginTop = "-100px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
@@ -280,8 +281,8 @@ function updatePreviousStatus() {
 			stepName = "MY_BIKE";
 			stepNumber--;
 			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-400px";
-				buttonPrevious.style.marginTop = "-400px";
+				buttonNext.style.marginTop = "-100px";
+				buttonPrevious.style.marginTop = "-100px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
@@ -290,7 +291,8 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML =
+				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
 			buttonNext.style.marginTop = "-50px";
@@ -303,8 +305,8 @@ function updatePreviousStatus() {
 			stepName = "PRICE_ZIP";
 			stepNumber--;
 			if (windowWidth.matches) {
-				buttonNext.style.marginTop = "-320px";
-				buttonPrevious.style.marginTop = "-320px";
+				buttonNext.style.marginTop = "-350px";
+				buttonPrevious.style.marginTop = "-350px";
 			} else {
 				buttonNext.style.marginTop = "-50px";
 				buttonPrevious.style.marginTop = "-50px";
