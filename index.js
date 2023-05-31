@@ -314,7 +314,6 @@ function getPrice(quote) {
 					case "BASIC_THEFT":
 						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
 							basicTheftMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -323,7 +322,6 @@ function getPrice(quote) {
 					case "BASIC_DAMAGE":
 						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
 							basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -335,7 +333,6 @@ function getPrice(quote) {
 							classicMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
 							).toFixed(2);	
-							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -365,7 +362,6 @@ function getPrice(quote) {
 							premiumMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
 							).toFixed(2);
-							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -396,7 +392,7 @@ function getPrice(quote) {
 			premiumAnnualMonthly.innerHTML = showPrice(premiumAnnualMonthlyValue);
 		})
 		.then(() => {
-			if (tabs) {
+			if (x) {
 				document.getElementById("assurance-content-mensuel").style.display = "flex";
 				document.getElementById("assurance-content-mensuel").innerHTML =
 					"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
