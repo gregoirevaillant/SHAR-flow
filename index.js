@@ -225,12 +225,6 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
-			let tab = document.getElementById("assurance-tab-mensuel");
-			if (basicDamageMonthlyValue < 2) {
-				tab.style.display = "none";
-			} else {
-				tab.style.display = "block";
-			}
 			scrollTop();
 			checkButton();
 			break;
