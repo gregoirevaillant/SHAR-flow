@@ -57,7 +57,7 @@ let tabs = false;
 buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
-const utmParameters = {
+let utmParameters = {
 	utm_source: "",
 	utm_medium: "",
 	utm_campaign: "",
@@ -68,16 +68,9 @@ let pageUrl = location.pathname;
 function updateUtm() {
 	var queryString = window.location.search;
 	var URLSearchParams_wb = new URLSearchParams(queryString);
-	for (let i = 0; i < utmParameters.length; i++) {
-		if (URLSearchParams_wb.has('utm_source')) {
-			utmParameters.utm_source = URLSearchParams_wb.get("utm_source");
-		} else if (URLSearchParams_wb.has('utm_medium')) {
-			utmParameters.utm_medium = URLSearchParams_wb.get("utm_medium");
-		}
-		else if (URLSearchParams_wb.has('utm_campaign')) {
-			utmParameters.utm_campaign = URLSearchParams_wb.get("utm_campaign");
-		}
-	}
+	utmParameters.utm_source = URLSearchParams_wb.get("utm_source");
+	utmParameters.utm_medium = URLSearchParams_wb.get("utm_medium");
+	utmParameters.utm_campaign = URLSearchParams_wb.get("utm_campaign");
 	console.log(utmParameters);
 }
 
@@ -230,7 +223,8 @@ function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
 			// hide title and show another one with differetn id and content
-			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML =
+				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
 			getQS(bikeprice, zipcode)
@@ -279,7 +273,8 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML =
+				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
 			buttonPrevious.style.marginBottom = "-50px";
