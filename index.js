@@ -228,8 +228,8 @@ function updateNextStatus() {
 			if (basicDamageMonthlyValue == 0) {
 				document.getElementById("assurance-tab-mensuel").style.display = "none";
 				document.getElementById("assurance-content-mensuel").style.display = "none";
-				// change the current tab to annual 
-				document.getElementById("assurance-tab-annuel").classList.add("w--current");
+				document.getElementById("assurance-tab-mensuel").setAttribute("aria-selected", "false");
+				document.getElementById("assurance-tab-annuel").setAttribute("aria-selected", "true");
 			}
 			scrollTop();
 			checkButton();
