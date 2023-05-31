@@ -226,10 +226,7 @@ function updateNextStatus() {
 					console.log(error);
 				});
 			if (basicDamageMonthlyValue == 0) {
-				document.getElementById("assurance-tab-mensuel").style.display = "none";
-				document.getElementById("assurance-content-mensuel").style.display = "none";
-				document.getElementById("assurance-tab-mensuel").setAttribute("aria-selected", "false");
-				document.getElementById("assurance-tab-annuel").setAttribute("aria-selected", "true");
+				document.getElementById("assurance-content-mensuel").innerHTML = "<h3>Non disponible</h3>";
 			}
 			scrollTop();
 			checkButton();
