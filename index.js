@@ -57,16 +57,7 @@ buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
 // Faire remonter les paramètres de l'URL ou l'url de la page
-// let pageURL = location.pathname;
-// let queryString = window.location.search;
-// let URLSearchParams_wb = new URLSearchParams(queryString);
-// const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
-// for (const utm_element of utmParameters) {
-// 	if (URLSearchParams_wb.has(utm_element)) {
-// 		let value = URLSearchParams_wb.get(utm_element);
-// 		document.getElementById("." + utm_element).val(value);
-// 	}
-// }
+
 
 function updateBikeprice(event) {
 	bikePrice = this.value;
@@ -225,7 +216,9 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
-			if (basicDamageMonthlyValue == 0) {
+			if (basicDamageMonthlyValue != 0) {
+				document.getElementById("assurance-content-mensuel").style.display = "grid";
+			} else {
 				document.getElementById("assurance-content-mensuel").style.display = "flex";
 				document.getElementById("assurance-content-mensuel").innerHTML = "<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
 			}
