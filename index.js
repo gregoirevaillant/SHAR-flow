@@ -69,9 +69,13 @@ function updateUtm() {
 	var queryString = window.location.search;
 	var URLSearchParams_wb = new URLSearchParams(queryString);
 	for (let i = 0; i < utmParameters.length; i++) {
-		if (URLSearchParams_wb.has(utmParameters[i])) {
-			var value = URLSearchParams_wb.get(utmParameters[i]);
-			utmParameters[utmParameters[i]] = value;
+		if (URLSearchParams_wb.has('utm_source')) {
+			utmParameters.utm_source = URLSearchParams_wb.get("utm_source");
+		} else if (URLSearchParams_wb.has('utm_medium')) {
+			utmParameters.utm_medium = URLSearchParams_wb.get("utm_medium");
+		}
+		else if (URLSearchParams_wb.has('utm_campaign')) {
+			utmParameters.utm_campaign = URLSearchParams_wb.get("utm_campaign");
 		}
 	}
 	console.log(utmParameters);
