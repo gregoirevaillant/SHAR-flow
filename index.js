@@ -57,8 +57,11 @@ let tabs = false;
 buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
-const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
-let paramsValue = ["", "", ""];
+const utmParameters = {
+	utm_source: "",
+	utm_medium: "",
+	utm_campaign: "",
+};
 let pageUrl = location.pathname;
 
 // update the utm variable from the url
@@ -68,10 +71,10 @@ function updateUtm() {
 	for (let i = 0; i < utmParameters.length; i++) {
 		if (URLSearchParams_wb.has(utmParameters[i])) {
 			var value = URLSearchParams_wb.get(utmParameters[i]);
-			paramsValue[i] = value;
+			utmParameters[utmParameters[i]] = value;
 		}
 	}
-	console.log(paramsValue);
+	console.log(utmParameters);
 }
 
 function updateBikeprice(event) {
