@@ -85,12 +85,7 @@ function updateEmail() {
 
 function handlechoosenPackage(event) {
 	choosenPackage = event.target.value;
-	let e = document.getElementById("next");
-	e.scrollIntoView({
-		block: "start",
-		behavior: "smooth",
-		inline: "start",
-	});
+	scrollTop("next");
 	switch (choosenPackage) {
 		case "BASIC_THEFT_A":
 			choosenPackage = 5;
@@ -204,9 +199,9 @@ function checkButton() {
 	}
 }
 
-function scrollTop() {
-	let e = document.getElementById("title");
-	e.scrollIntoView({
+function scrollTop(id) {
+	let anchor = document.getElementById(id);
+	anchor.scrollIntoView({
 		block: "start",
 		behavior: "smooth",
 		inline: "start",
@@ -255,7 +250,6 @@ function updatePreviousStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
-			scrollTop();
 			checkButton();
 			break;
 		case 2:
@@ -263,14 +257,12 @@ function updatePreviousStatus() {
 				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
-			scrollTop();
 			checkButton();
 			break;
 		case 1:
 			title.innerHTML = "Simulez le prix de votre assurance vélo&nbsp;<span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
-			scrollTop();
 			checkButton();
 			break;
 		default:
