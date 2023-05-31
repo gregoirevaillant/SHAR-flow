@@ -18,7 +18,7 @@ let premiumAnnualMonthly = document.getElementById("premiumAnnualMonthly");
 let buttonNext = document.getElementById("next");
 let buttonPrevious = document.getElementById("previous");
 let buttonSubmit = document.getElementById("submit");
-let title = document.getElementById("title");
+let title = document.getElementById("flow-title");
 let packages = document.querySelectorAll('[name="package"]');
 
 // Permet de définir les variables (ordre alphabétique)s
@@ -216,8 +216,7 @@ function scrollTop() {
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
-			title.innerHTML =
-				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
 			getQS(bikePrice, zipcode)
