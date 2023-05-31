@@ -179,7 +179,7 @@ function checkButton() {
 		}
 	}
 	if (stepNumber == 1) {
-		if (choosenPackage === undefined) {
+		if (choosenPackage == '') {
 			buttonNext.style.pointerEvents = "none";
 			buttonNext.style.opacity = "0.5";
 		} else {
@@ -226,7 +226,8 @@ function updateNextStatus() {
 					console.log(error);
 				});
 			if (basicDamageMonthlyValue == 0) {
-				document.getElementById("assurance-content-mensuel").innerHTML = "<h3>Non disponible</h3>";
+				document.getElementById("assurance-content-mensuel").style.display = "flex";
+				document.getElementById("assurance-content-mensuel").innerHTML = "<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
 			}
 			scrollTop();
 			checkButton();
