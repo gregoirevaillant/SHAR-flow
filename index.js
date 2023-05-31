@@ -85,7 +85,12 @@ function updateEmail() {
 
 function handlechoosenPackage(event) {
 	choosenPackage = event.target.value;
-	scrollTop("next");
+	let e = document.getElementById("next");
+	e.scrollIntoView({
+		block: "start",
+		behavior: "smooth",
+		inline: "start",
+	});
 	switch (choosenPackage) {
 		case "BASIC_THEFT_A":
 			choosenPackage = 5;
@@ -199,8 +204,8 @@ function checkButton() {
 	}
 }
 
-function scrollTop(anchorid) {
-	let anchor = document.getElementById(`${anchorid}`);
+function scrollTop() {
+	let anchor = document.getElementById("flow-title");
 	anchor.scrollIntoView({
 		block: "start",
 		behavior: "smooth",
