@@ -225,7 +225,7 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
-			if (basicDamageMonthlyValue === 0) {
+			if (basicDamageMonthlyValue == 0) {
 				document.getElementById("assurance-tab-mensuel").style.display = "none";
 				document.getElementById("assurance-content-mensuel").style.display = "none";
 			}
