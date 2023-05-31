@@ -199,8 +199,8 @@ function checkButton() {
 	}
 }
 
-function scrollTop(id) {
-	let anchor = document.getElementById(id);
+function scrollTop(anchorid) {
+	let anchor = document.getElementById(`${anchorid}`);
 	anchor.scrollIntoView({
 		block: "start",
 		behavior: "smooth",
