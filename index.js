@@ -51,6 +51,7 @@ let stepName = "PRICE_ZIP";
 let stepNumber = 0;
 let quote = "";
 let zipcode = "";
+let tabs = false;
 
 // Désactiver le bouton next
 buttonNext.style.pointerEvents = "none";
@@ -216,12 +217,11 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
-			if (basicDamageMonthlyValue != 0) {
-				document.getElementById("assurance-content-mensuel").style.display = "grid";
-			} else {
+			if (tabs) {
 				document.getElementById("assurance-content-mensuel").style.display = "flex";
 				document.getElementById("assurance-content-mensuel").innerHTML = "<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
 			}
+
 			scrollTop();
 			checkButton();
 			break;
@@ -326,6 +326,7 @@ function getPrice(quote) {
 							basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 						} else {
 							basicDamageMonthlyValue = 0;
+							tabs = true;
 						}
 						basicDamageAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
