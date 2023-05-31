@@ -392,7 +392,7 @@ function getPrice(quote) {
 			premiumAnnualMonthly.innerHTML = showPrice(premiumAnnualMonthlyValue);
 		})
 		.then(() => {
-			if (x) {
+			if (tabs) {
 				document.getElementById("assurance-content-mensuel").style.display = "flex";
 				document.getElementById("assurance-content-mensuel").innerHTML =
 					"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
