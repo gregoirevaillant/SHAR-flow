@@ -30,7 +30,7 @@ let bikeBrand = "";
 let bikeDate = "";
 let bikeInvoice = "";
 let bikeModel = "";
-let bikePrice = 0;
+let bikeprice = 0;
 let choosenPackage = "";
 let classicMonthlyValue = "";
 let classicMonthlyAnnualValue = "";
@@ -78,7 +78,7 @@ function updateUtm() {
 }
 
 function updateBikeprice(event) {
-	bikePrice = this.value;
+	bikeprice = this.value;
 	checkButton();
 }
 
@@ -179,7 +179,7 @@ function updateLockInvoice() {
 
 function checkButton() {
 	if (stepNumber == 0) {
-		if (bikePrice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
+		if (bikeprice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
 			buttonNext.style.pointerEvents = "auto";
 			buttonNext.style.opacity = "1";
 		} else {
@@ -229,7 +229,7 @@ function updateNextStatus() {
 			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
-			getQS(bikePrice, zipcode)
+			getQS(bikeprice, zipcode)
 				.then(() => getPrice(quote))
 				.catch((error) => {
 					console.log(error);
@@ -442,7 +442,7 @@ function addContact() {
 		body: JSON.stringify({
 			email,
 			zipcode,
-			bikePrice,
+			bikeprice,
 			quote,
 			basicTheftMonthlyValue,
 			basicTheftAnnualValue,
@@ -492,7 +492,7 @@ function updateQSMyBike(quoteSerial) {
 				step: stepName,
 			},
 			vehicle: {
-				price: bikePrice,
+				price: bikeprice,
 				type: "bicyle",
 			},
 		}),
@@ -528,7 +528,7 @@ function updateQSAuth(quoteSerial) {
 			vehicle: {
 				brand: bikeBrand,
 				model: bikeModel,
-				price: bikePrice,
+				price: bikeprice,
 				purchase_date: bikeDate,
 				type: "bicyle",
 			},
