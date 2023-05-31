@@ -208,8 +208,7 @@ function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
 			// hide title and show another one with differetn id and content
-			title.innerHTML =
-				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
 			getQS(bikePrice, zipcode)
@@ -217,11 +216,6 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
-			if (tabs) {
-				document.getElementById("assurance-content-mensuel").style.display = "flex";
-				document.getElementById("assurance-content-mensuel").innerHTML =
-					"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
-			}
 			scrollTop();
 			checkButton();
 			break;
@@ -255,8 +249,7 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML =
-				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
 			checkButton();
@@ -299,6 +292,13 @@ function getQS(prixVelo, codePostal) {
 				quote = response.serial;
 				resolve();
 			})
+			.then(() => {
+				if (tabs) {
+					document.getElementById("assurance-content-mensuel").style.display = "flex";
+					document.getElementById("assurance-content-mensuel").innerHTML =
+						"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
+				}
+			})
 			.catch((error) => {
 				reject(error);
 			});
@@ -321,6 +321,7 @@ function getPrice(quote) {
 					case "BASIC_THEFT":
 						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
 							basicTheftMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -329,6 +330,7 @@ function getPrice(quote) {
 					case "BASIC_DAMAGE":
 						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
 							basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -340,6 +342,7 @@ function getPrice(quote) {
 							classicMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
 							).toFixed(2);	
+							tabs = false;
 						} else {
 							tabs = true;
 						}
@@ -357,6 +360,7 @@ function getPrice(quote) {
 						} else {
 							tabs = true;
 						}
+						tabs = false;
 						comfortAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						comfortAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
 							2
@@ -368,6 +372,7 @@ function getPrice(quote) {
 							premiumMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
 							).toFixed(2);
+							tabs = false;
 						} else {
 							tabs = true;
 						}
