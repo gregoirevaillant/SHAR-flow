@@ -231,6 +231,7 @@ function updateNextStatus() {
 			title.innerHTML = "Votre contrat est prêt&nbsp;!&nbsp;<span>&#127881</span>";
 			stepName = "AUTH";
 			stepNumber++;
+			buttonPrevious.style.marginBottom = "0";
 			updateQSAuth(quote);
 			scrollTop();
 			checkButton();
