@@ -57,7 +57,25 @@ let tabs = false;
 buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
-// Faire remonter les paramètres de l'URL ou l'url de la page
+const utmParameters = [
+	"utm_source", 
+	"utm_medium", 
+	"utm_campaign"
+  ];
+let paramsValue = ['', '', '']
+
+// update the utm variable from the url 
+function updateUtm() {
+	var queryString = window.location.search;
+	var URLSearchParams_wb = new URLSearchParams(queryString);
+	for (let i = 0; i < utmParameters.length; i++) {
+	  if(URLSearchParams_wb.has(utmParameters[i])){
+		var value = URLSearchParams_wb.get(utmParameters[i])
+		paramsValue[i] = value;
+	  }
+	}  
+	console.log(paramsValue)
+}
 
 function updateBikeprice(event) {
 	bikePrice = this.value;
@@ -216,6 +234,7 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
+			addContact();
 			scrollTop();
 			checkButton();
 			break;
@@ -247,18 +266,21 @@ function updatePreviousStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
+			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
 		case 2:
 			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
+			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
 		case 1:
 			title.innerHTML = "Simulez le prix de votre assurance vélo&nbsp;<span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
+			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
 		default:
@@ -438,6 +460,7 @@ function addContact() {
 			premiumMonthlyAnnualValue,
 			premiumAnnualValue,
 			premiumAnnualMonthlyValue,
+			paramsValue,
 		}),
 	}).catch((error) => {
 		console.log(error);
