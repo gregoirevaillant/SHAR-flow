@@ -216,6 +216,7 @@ function scrollTop() {
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
+			// hide title and show another one with differetn id and content
 			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
@@ -224,6 +225,12 @@ function updateNextStatus() {
 				.catch((error) => {
 					console.log(error);
 				});
+			let tab = document.getElementById("assurance-tab-mensuel");
+			if (basicDamageMonthlyValue < 2) {
+				tab.style.display = "none";
+			} else {
+				tab.style.display = "block";
+			}
 			scrollTop();
 			checkButton();
 			break;
@@ -231,16 +238,16 @@ function updateNextStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber++;
-			scrollTop();
 			updateQSMyBike(quote);
+			scrollTop();
 			checkButton();
 			break;
 		case 2:
 			title.innerHTML = "Votre contrat est prêt&nbsp;!&nbsp;<span>&#127881</span>";
 			stepName = "AUTH";
 			stepNumber++;
-			scrollTop();
 			updateQSAuth(quote);
+			scrollTop();
 			checkButton();
 			break;
 		default:
@@ -257,8 +264,7 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML =
-				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
 			checkButton();
