@@ -325,7 +325,7 @@ function getPrice(quote) {
 						basicTheftAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "BASIC_DAMAGE":
-						if (packageObj.monthly.priceWithTaxes) {
+						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
 							basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 						} else {
 							basicDamageMonthlyValue = 0;
