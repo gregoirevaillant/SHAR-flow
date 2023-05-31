@@ -292,13 +292,6 @@ function getQS(prixVelo, codePostal) {
 				quote = response.serial;
 				resolve();
 			})
-			.then(() => {
-				if (tabs) {
-					document.getElementById("assurance-content-mensuel").style.display = "flex";
-					document.getElementById("assurance-content-mensuel").innerHTML =
-						"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
-				}
-			})
 			.catch((error) => {
 				reject(error);
 			});
@@ -401,6 +394,13 @@ function getPrice(quote) {
 			premiumMonthlyAnnual.innerHTML = showPrice(premiumMonthlyAnnualValue);
 			premiumAnnual.innerHTML = showPrice(premiumAnnualValue);
 			premiumAnnualMonthly.innerHTML = showPrice(premiumAnnualMonthlyValue);
+		})
+		.then(() => {
+			if (tabs) {
+				document.getElementById("assurance-content-mensuel").style.display = "flex";
+				document.getElementById("assurance-content-mensuel").innerHTML =
+					"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
+			}
 		})
 		.then(() => addContact())
 		.catch((error) => {
