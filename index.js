@@ -469,7 +469,7 @@ function addContact() {
 			premiumMonthlyAnnualValue,
 			premiumAnnualValue,
 			premiumAnnualMonthlyValue,
-			paramsValue,
+			utmParameters,
 			pageUrl,
 		}),
 	}).catch((error) => {
