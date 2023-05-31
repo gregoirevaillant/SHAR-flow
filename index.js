@@ -231,10 +231,15 @@ function updateNextStatus() {
 			stepNumber++;
 			getQS(bikeprice, zipcode)
 				.then(() => getPrice(quote))
+				.then(() => {
+					updateUtm()
+				})
+				.then(() => {
+					addContact()
+				})
 				.catch((error) => {
 					console.log(error);
 				});
-			addContact();
 			scrollTop();
 			checkButton();
 			break;
