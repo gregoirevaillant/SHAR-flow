@@ -59,7 +59,6 @@ buttonNext.style.opacity = "0.5";
 
 // Faire remonter les paramètres de l'URL ou l'url de la page
 
-
 function updateBikeprice(event) {
 	bikePrice = this.value;
 	checkButton();
@@ -171,7 +170,7 @@ function checkButton() {
 		}
 	}
 	if (stepNumber == 1) {
-		if (choosenPackage == '') {
+		if (choosenPackage == "") {
 			buttonNext.style.pointerEvents = "none";
 			buttonNext.style.opacity = "0.5";
 		} else {
@@ -209,7 +208,8 @@ function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
 			// hide title and show another one with differetn id and content
-			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML =
+				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
 			getQS(bikePrice, zipcode)
@@ -219,9 +219,9 @@ function updateNextStatus() {
 				});
 			if (tabs) {
 				document.getElementById("assurance-content-mensuel").style.display = "flex";
-				document.getElementById("assurance-content-mensuel").innerHTML = "<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
+				document.getElementById("assurance-content-mensuel").innerHTML =
+					"<h3>Souscription Mensuelle non disponible &#x1F641;</h3>";
 			}
-
 			scrollTop();
 			checkButton();
 			break;
@@ -255,7 +255,8 @@ function updatePreviousStatus() {
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML =
+				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
 			checkButton();
@@ -318,43 +319,58 @@ function getPrice(quote) {
 			for (const packageObj of response) {
 				switch (packageObj.package.code) {
 					case "BASIC_THEFT":
-						basicTheftMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+							basicTheftMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+						} else {
+							tabs = true;
+						}
 						basicTheftAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "BASIC_DAMAGE":
 						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
 							basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 						} else {
-							basicDamageMonthlyValue = 0;
 							tabs = true;
 						}
 						basicDamageAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "CLASSIC":
-						classicMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-						classicMonthlyAnnualValue = (
-							packageObj.monthly.priceWithTaxes * 12
-						).toFixed(2);
+						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+							classicMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+							classicMonthlyAnnualValue = (
+								packageObj.monthly.priceWithTaxes * 12
+							).toFixed(2);	
+						} else {
+							tabs = true;
+						}
 						classicAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						classicAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
 							2
 						);
 						break;
 					case "COMFORT":
-						comfortMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-						comfortMonthlyAnnualValue = (
-							packageObj.monthly.priceWithTaxes * 12
-						).toFixed(2);
+						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+							comfortMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+							comfortMonthlyAnnualValue = (
+								packageObj.monthly.priceWithTaxes * 12
+							).toFixed(2);
+						} else {
+							tabs = true;
+						}
 						comfortAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						comfortAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
 							2
 						);
 						break;
 					case "PREMIUM":
-						premiumMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
-						premiumMonthlyAnnualValue = (
-							packageObj.monthly.priceWithTaxes * 12
-						).toFixed(2);
+						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+							premiumMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
+							premiumMonthlyAnnualValue = (
+								packageObj.monthly.priceWithTaxes * 12
+							).toFixed(2);
+						} else {
+							tabs = true;
+						}
 						premiumAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						premiumAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
 							2
