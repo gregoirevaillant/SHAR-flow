@@ -350,7 +350,6 @@ function getPrice(quote) {
 						} else {
 							tabs = true;
 						}
-						tabs = false;
 						comfortAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						comfortAnnualMonthlyValue = (packageObj.annual.priceWithTaxes / 12).toFixed(
 							2
