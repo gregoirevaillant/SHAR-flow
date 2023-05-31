@@ -57,24 +57,21 @@ let tabs = false;
 buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
-const utmParameters = [
-	"utm_source", 
-	"utm_medium", 
-	"utm_campaign"
-  ];
-let paramsValue = ['', '', '']
+const utmParameters = ["utm_source", "utm_medium", "utm_campaign"];
+let paramsValue = ["", "", ""];
+let pageUrl = location.pathname;
 
-// update the utm variable from the url 
+// update the utm variable from the url
 function updateUtm() {
 	var queryString = window.location.search;
 	var URLSearchParams_wb = new URLSearchParams(queryString);
 	for (let i = 0; i < utmParameters.length; i++) {
-	  if(URLSearchParams_wb.has(utmParameters[i])){
-		var value = URLSearchParams_wb.get(utmParameters[i])
-		paramsValue[i] = value;
-	  }
-	}  
-	console.log(paramsValue)
+		if (URLSearchParams_wb.has(utmParameters[i])) {
+			var value = URLSearchParams_wb.get(utmParameters[i]);
+			paramsValue[i] = value;
+		}
+	}
+	console.log(paramsValue);
 }
 
 function updateBikeprice(event) {
@@ -232,10 +229,10 @@ function updateNextStatus() {
 			getQS(bikeprice, zipcode)
 				.then(() => getPrice(quote))
 				.then(() => {
-					updateUtm()
+					updateUtm();
 				})
 				.then(() => {
-					addContact()
+					addContact();
 				})
 				.catch((error) => {
 					console.log(error);
@@ -360,7 +357,7 @@ function getPrice(quote) {
 							classicMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 							classicMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
-							).toFixed(2);	
+							).toFixed(2);
 						} else {
 							tabs = true;
 						}
@@ -466,6 +463,7 @@ function addContact() {
 			premiumAnnualValue,
 			premiumAnnualMonthlyValue,
 			paramsValue,
+			pageUrl,
 		}),
 	}).catch((error) => {
 		console.log(error);
