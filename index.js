@@ -282,7 +282,6 @@ function updatePreviousStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
-			dataLayer.push({ 'step' : 'MY_BIKE' });
 			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
@@ -290,7 +289,6 @@ function updatePreviousStatus() {
 			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
-			dataLayer.push({ 'step' : 'OFFER' });
 			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
@@ -298,7 +296,6 @@ function updatePreviousStatus() {
 			title.innerHTML = "Simulez le prix de votre assurance vélo&nbsp;<span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
-			dataLayer.push({ 'step' : 'PRICE_ZIP' });
 			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
