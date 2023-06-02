@@ -57,6 +57,7 @@ let tabs = false;
 buttonNext.style.pointerEvents = "none";
 buttonNext.style.opacity = "0.5";
 
+// Permet de définir les utm parameters
 let utmParameters = {
 	utm_source: "",
 	utm_medium: "",
@@ -66,29 +67,33 @@ let pageUrl = location.pathname;
 
 // update the utm variable from the url
 function updateUtm() {
-	var queryString = window.location.search;
-	var URLSearchParams_wb = new URLSearchParams(queryString);
+	let queryString = window.location.search;
+	let URLSearchParams_wb = new URLSearchParams(queryString);
 	utmParameters.utm_source = URLSearchParams_wb.get("utm_source");
 	utmParameters.utm_medium = URLSearchParams_wb.get("utm_medium");
 	utmParameters.utm_campaign = URLSearchParams_wb.get("utm_campaign");
 	console.log(utmParameters);
 }
 
+// Permet de mettre à jour la variable bikeprice
 function updateBikeprice(event) {
 	bikeprice = this.value;
 	checkButton();
 }
 
+// Permet de mettre à jour la variable zipcode
 function updateZipcode() {
 	zipcode = this.value;
 	checkButton();
 }
 
+// Permet de mettre à jour la variable email
 function updateEmail() {
 	email = this.value;
 	checkButton();
 }
 
+// Permet de mettre à jour la variable choosenPackage
 function handlechoosenPackage(event) {
 	choosenPackage = event.target.value;
 	let e = document.getElementById("next");
@@ -145,16 +150,19 @@ function handlechoosenPackage(event) {
 	checkButton();
 }
 
+// Permet de mettre à jour la variable bikeModel
 function updateBikeModel() {
 	bikeModel = this.value;
 	checkButton();
 }
 
+// Permet de mettre à jour la variable bikeBrand
 function updateBikeBrand() {
 	bikeBrand = this.value;
 	checkButton();
 }
 
+// Permet de mettre à jour la variable bikeDate
 function updateBikeDate() {
 	let input = this.value;
 	let day = input.substring(0, 2);
@@ -164,16 +172,19 @@ function updateBikeDate() {
 	checkButton();
 }
 
+// Permet de mettre à jour la variable bikeInvoice
 function updateBikeInvoice() {
 	bikeInvoice = this.checked;
 	checkButton();
 }
 
+// Permet de mettre à jour la variable lockInvoice
 function updateLockInvoice() {
 	lockInvoice = this.checked;
 	checkButton();
 }
 
+// Permet de vérifier si le bouton next doit être activé ou non
 function checkButton() {
 	if (stepNumber == 0) {
 		if (bikeprice >= 1 && zipcode.length === 5 && email.length >= 1 && email.includes("@")) {
@@ -210,6 +221,7 @@ function checkButton() {
 	}
 }
 
+// Permet de scroller vers le haut de la page quand le boutom next est cliqué
 function scrollTop() {
 	let anchor = document.getElementById("flow-title");
 	anchor.scrollIntoView({
@@ -219,6 +231,7 @@ function scrollTop() {
 	});
 }
 
+// Permet de gerer le click sur le bouton next
 function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
@@ -263,6 +276,7 @@ function updateNextStatus() {
 	}
 }
 
+// Permet de gerer le click sur le bouton previous
 function updatePreviousStatus() {
 	switch (stepNumber) {
 		case 3:
@@ -340,7 +354,7 @@ function getPrice(quote) {
 			for (const packageObj of response) {
 				switch (packageObj.package.code) {
 					case "BASIC_THEFT":
-						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+						if (packageObj?.monthly && packageObj.monthly?.priceWithTaxes) {
 							basicTheftMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 						} else {
 							tabs = true;
@@ -348,7 +362,7 @@ function getPrice(quote) {
 						basicTheftAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "BASIC_DAMAGE":
-						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+						if (packageObj?.monthly && packageObj.monthly?.priceWithTaxes) {
 							basicDamageMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 						} else {
 							tabs = true;
@@ -356,7 +370,7 @@ function getPrice(quote) {
 						basicDamageAnnualValue = packageObj.annual.priceWithTaxes.toFixed(2);
 						break;
 					case "CLASSIC":
-						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+						if (packageObj?.monthly && packageObj.monthly?.priceWithTaxes) {
 							classicMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 							classicMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
@@ -370,7 +384,7 @@ function getPrice(quote) {
 						);
 						break;
 					case "COMFORT":
-						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+						if (packageObj?.monthly && packageObj.monthly?.priceWithTaxes) {
 							comfortMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 							comfortMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
@@ -384,7 +398,7 @@ function getPrice(quote) {
 						);
 						break;
 					case "PREMIUM":
-						if (packageObj.monthly && packageObj.monthly.priceWithTaxes) {
+						if (packageObj?.monthly && packageObj.monthly?.priceWithTaxes) {
 							premiumMonthlyValue = packageObj.monthly.priceWithTaxes.toFixed(2);
 							premiumMonthlyAnnualValue = (
 								packageObj.monthly.priceWithTaxes * 12
@@ -550,7 +564,7 @@ function updateQSAuth(quoteSerial) {
 buttonNext.addEventListener("click", updateNextStatus);
 buttonPrevious.addEventListener("click", updatePreviousStatus);
 
-// Permet de gerer les inputs
+// Permet de gerer les inputs et empecher le submit avec la touche entrée
 document.getElementById("bikeprice").oninput = updateBikeprice;
 document.getElementById("bikeprice").addEventListener("keydown", (e) => {
 	if (e.keyCode === 13) {
