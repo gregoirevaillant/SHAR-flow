@@ -52,6 +52,7 @@ let stepNumber = 0;
 let quote = "";
 let zipcode = "";
 let tabs = false;
+dataLayer.push({ 'step' : 'PRICE_ZIP' });
 
 // Désactiver le bouton next
 buttonNext.style.pointerEvents = "none";
@@ -235,10 +236,10 @@ function updateNextStatus() {
 	switch (stepNumber) {
 		case 0:
 			// hide title and show another one with differetn id and content
-			title.innerHTML =
-				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber++;
+			dataLayer.push({ 'step' : 'OFFER' });
 			getQS(bikeprice, zipcode, email)
 				.then(() => getPrice(quote))
 				.then(() => {
@@ -254,6 +255,7 @@ function updateNextStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber++;
+			dataLayer.push({ 'step' : 'MY_BIKE' });
 			updateQSMyBike(quote);
 			scrollTop();
 			checkButton();
@@ -261,6 +263,7 @@ function updateNextStatus() {
 		case 2:
 			title.innerHTML = "Votre contrat est prêt&nbsp;!&nbsp;<span>&#127881</span>";
 			stepName = "AUTH";
+			dataLayer.push({ 'step' : 'AUTH' });
 			stepNumber++;
 			buttonPrevious.style.marginBottom = "0";
 			updateQSAuth(quote);
@@ -279,14 +282,15 @@ function updatePreviousStatus() {
 			title.innerHTML = "Parlez nous de votre vélo&nbsp;<span>&#9997</span>";
 			stepName = "MY_BIKE";
 			stepNumber--;
+			dataLayer.push({ 'step' : 'MY_BIKE' });
 			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
 		case 2:
-			title.innerHTML =
-				"Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
+			title.innerHTML = "Sélectionnez la protection qui vous convient&nbsp;<span>&#129309</span>";
 			stepName = "OFFER";
 			stepNumber--;
+			dataLayer.push({ 'step' : 'OFFER' });
 			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
@@ -294,6 +298,7 @@ function updatePreviousStatus() {
 			title.innerHTML = "Simulez le prix de votre assurance vélo&nbsp;<span>&#128640</span>";
 			stepName = "PRICE_ZIP";
 			stepNumber--;
+			dataLayer.push({ 'step' : 'PRICE_ZIP' });
 			buttonPrevious.style.marginBottom = "-50px";
 			checkButton();
 			break;
