@@ -72,7 +72,6 @@ function updateUtm() {
 	utmParameters.utm_source = URLSearchParams_wb.get("utm_source");
 	utmParameters.utm_medium = URLSearchParams_wb.get("utm_medium");
 	utmParameters.utm_campaign = URLSearchParams_wb.get("utm_campaign");
-	console.log(utmParameters);
 }
 
 // Permet de mettre à jour la variable bikeprice
@@ -244,9 +243,6 @@ function updateNextStatus() {
 				.then(() => getPrice(quote))
 				.then(() => {
 					updateUtm();
-				})
-				.then(() => {
-					addContact();
 				})
 				.catch((error) => {
 					console.log(error);
