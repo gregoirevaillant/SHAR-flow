@@ -502,6 +502,10 @@ function updateQSMyBike(quoteSerial) {
 				zipcode: zipcode,
 				email: email,
 			},
+			// personal_lock : {
+			// 	brand: "Marque", 
+			// 	model: "Modèle", 
+			// }, 
 			policy: {
 				premiumSplitting: premiumSplitting,
 			},
@@ -537,6 +541,10 @@ function updateQSAuth(quoteSerial) {
 				zipcode: zipcode,
 				email: email,
 			},
+			// personal_lock : {
+			// 	brand: "Marque", 
+			// 	model: "Modèle", 
+			// }, 
 			policy: {
 				premiumSplitting: premiumSplitting,
 			},
